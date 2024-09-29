@@ -1,0 +1,223 @@
+Documentation Technique et Fonctionnelle - Français
+
+1. Table account_groups (Groupes de Comptes)
+
+	•	Fonctionnalité : Cette table stocke les groupes de comptes tels que le bilan, le bénéfice et les pertes. Chaque groupe regroupe plusieurs types de comptes.
+	•	Colonnes :
+	•	id_group : Identifiant unique du groupe (clé primaire).
+	•	name_group : Nom du groupe de comptes.
+	•	description : Description du groupe.
+	•	active : Indique si le groupe est actif ou non (1 pour actif, 0 pour inactif).
+
+2. Table account_types (Types de Comptes)
+
+	•	Fonctionnalité : Cette table représente les types de comptes comme les comptes bancaires, portefeuilles, revenus, ou dépenses.
+	•	Colonnes :
+	•	id_type : Identifiant unique du type de compte (clé primaire).
+	•	id_group : Référence à account_groups (clé étrangère) pour indiquer le groupe associé.
+	•	name_type : Nom du type de compte.
+	•	description : Description du type de compte.
+	•	active : Indique si le type est actif ou non.
+
+3. Table account_categories (Catégories de Comptes)
+
+	•	Fonctionnalité : Permet aux utilisateurs de définir leurs propres catégories de comptes en fonction des types définis.
+	•	Colonnes :
+	•	id_category : Identifiant unique de la catégorie (clé primaire).
+	•	id_type : Référence à account_types (clé étrangère) pour indiquer le type associé.
+	•	name_category : Nom de la catégorie.
+	•	description : Description de la catégorie.
+	•	active : Indique si la catégorie est active ou non.
+
+4. Table accounts (Comptes Bancaires)
+
+	•	Fonctionnalité : Cette table enregistre les comptes bancaires ou autres comptes financiers.
+	•	Colonnes :
+	•	id_account : Identifiant unique du compte (clé primaire).
+	•	id_category : Référence à account_categories (clé étrangère) pour indiquer la catégorie du compte.
+	•	name_account : Nom du compte.
+	•	balance_account : Solde actuel du compte.
+	•	id_currency : Référence à currencies pour indiquer la devise du compte.
+	•	description : Description du compte.
+	•	opening_date : Date d’ouverture du compte.
+	•	active : Indique si le compte est actif ou non.
+
+5. Table currencies (Devises)
+
+	•	Fonctionnalité : Cette table contient la liste des devises disponibles pour les comptes et transactions.
+	•	Colonnes :
+	•	id_currency : Identifiant unique de la devise (clé primaire).
+	•	code : Code de la devise (ex : EUR, USD).
+	•	symbol : Symbole de la devise (ex : €, $).
+	•	name : Nom de la devise.
+	•	exchange_rate : Taux de change par rapport à la devise de référence.
+
+6. Table transactions (Transactions)
+
+	•	Fonctionnalité : Représente toutes les transactions effectuées sur les comptes, telles que les dépôts, retraits ou transferts.
+	•	Colonnes :
+	•	id_transaction : Identifiant unique de la transaction (clé primaire).
+	•	id_account : Référence à accounts pour indiquer le compte concerné.
+	•	id_beneficiary : Référence à beneficiaries pour indiquer le bénéficiaire de la transaction.
+	•	date_transaction : Date de la transaction.
+	•	amount : Montant de la transaction.
+	•	description : Description de la transaction.
+	•	id_currency : Référence à currencies pour la devise utilisée.
+	•	status : Statut de la transaction (ex : completed, pending).
+	•	recurrence : Fréquence de la transaction (none, daily, weekly, monthly, annually).
+	•	recurrence_end : Date de fin pour une transaction récurrente.
+
+7. Table split_transactions (Transactions Ventilées)
+
+	•	Fonctionnalité : Permet de ventiler une transaction en plusieurs sous-transactions.
+	•	Colonnes :
+	•	id_split : Identifiant unique de la transaction ventilée (clé primaire).
+	•	id_transaction : Référence à transactions pour indiquer la transaction parent.
+	•	id_account : Référence à accounts pour indiquer le compte associé.
+	•	amount : Montant de la sous-transaction.
+	•	description : Description de la sous-transaction.
+
+8. Table beneficiaries (Bénéficiaires)
+
+	•	Fonctionnalité : Stocke les informations sur les bénéficiaires des transactions.
+	•	Colonnes :
+	•	id_beneficiary : Identifiant unique du bénéficiaire (clé primaire).
+	•	name_beneficiary : Nom du bénéficiaire.
+	•	address : Adresse du bénéficiaire.
+	•	phone : Téléphone du bénéficiaire.
+	•	email : Email du bénéficiaire.
+
+9. Table user_settings (Paramètres Utilisateur)
+
+	•	Fonctionnalité : Stocke les paramètres utilisateurs comme les préférences de langue, de format de date, etc.
+	•	Colonnes :
+	•	id_user : Identifiant unique de l’utilisateur (clé primaire).
+	•	default_currency : Référence à currencies pour la devise par défaut de l’utilisateur.
+	•	date_format : Format de la date choisi.
+	•	number_format : Format des nombres.
+	•	language : Langue de l’interface.
+	•	theme : Thème choisi (clair ou sombre).
+
+10. Table attachments (Pièces Jointes)
+
+	•	Fonctionnalité : Enregistre les chemins des fichiers associés aux transactions, comptes ou utilisateurs.
+	•	Colonnes :
+	•	id_attachment : Identifiant unique de la pièce jointe (clé primaire).
+	•	file_path : Chemin du fichier (PNG, JPG, PDF).
+	•	file_type : Type du fichier (png, jpg, pdf).
+	•	id_transaction : Référence à une transaction associée (facultatif).
+	•	id_account : Référence à un compte associé (facultatif).
+	•	id_user : Référence à un utilisateur associé (facultatif).
+	•	description : Description de la pièce jointe.
+
+Documentation Technique et Fonctionnelle - English
+
+1. Table account_groups (Account Groups)
+
+	•	Functionality: Stores account groups such as balance, profit, and loss. Each group holds several account types.
+	•	Columns:
+	•	id_group: Unique identifier for the group (primary key).
+	•	name_group: Name of the account group.
+	•	description: Description of the group.
+	•	active: Indicates whether the group is active (1 for active, 0 for inactive).
+
+2. Table account_types (Account Types)
+
+	•	Functionality: Represents types of accounts such as bank accounts, wallets, income, or expenses.
+	•	Columns:
+	•	id_type: Unique identifier for the account type (primary key).
+	•	id_group: Reference to account_groups (foreign key) to indicate the associated group.
+	•	name_type: Name of the account type.
+	•	description: Description of the account type.
+	•	active: Indicates if the type is active.
+
+3. Table account_categories (Account Categories)
+
+	•	Functionality: Allows users to define custom account categories based on predefined types.
+	•	Columns:
+	•	id_category: Unique identifier for the category (primary key).
+	•	id_type: Reference to account_types (foreign key) to indicate the associated type.
+	•	name_category: Name of the category.
+	•	description: Description of the category.
+	•	active: Indicates if the category is active.
+
+4. Table accounts (Bank Accounts)
+
+	•	Functionality: Stores bank accounts or other financial accounts.
+	•	Columns:
+	•	id_account: Unique identifier for the account (primary key).
+	•	id_category: Reference to account_categories (foreign key) for the account category.
+	•	name_account: Name of the account.
+	•	balance_account: Current balance of the account.
+	•	id_currency: Reference to currencies for the account currency.
+	•	description: Description of the account.
+	•	opening_date: Account opening date.
+	•	active: Indicates if the account is active.
+
+5. Table currencies (Currencies)
+
+	•	Functionality: Stores available currencies for accounts and transactions.
+	•	Columns:
+	•	id_currency: Unique identifier for the currency (primary key).
+	•	code: Currency code (e.g., EUR, USD).
+	•	symbol: Currency symbol (e.g., €, $).
+	•	name: Currency name.
+	•	exchange_rate: Exchange rate relative to the base currency.
+
+6. Table transactions (Transactions)
+
+	•	Functionality: Represents all transactions made on accounts, such as deposits, withdrawals, or transfers.
+	•	Columns:
+	•	id_transaction: Unique identifier for the transaction (primary key).
+	•	id_account: Reference to accounts to indicate the associated account.
+	•	id_beneficiary: Reference to beneficiaries for the transaction beneficiary.
+	•	date_transaction: Date of the transaction.
+	•	amount: Transaction amount.
+	•	description: Description of the transaction.
+	•	id_currency: Reference to currencies for the currency used.
+	•	status: Transaction status (e.g., completed, pending).
+	•	recurrence: Frequency of the transaction (none, daily, weekly, monthly, annually).
+	•	recurrence_end: End date for a recurring transaction.
+
+7. Table split_transactions (Split Transactions)
+
+	•	Functionality: Allows splitting a transaction into multiple sub-transactions.
+	•	Columns:
+	•	id_split: Unique identifier for the split transaction (primary key).
+	•	id_transaction: Reference to transactions for the parent transaction.
+	•	id_account: Reference to accounts for the associated account.
+	•	amount: Amount of the split transaction.
+	•	description: Description of the split transaction.
+
+8. Table beneficiaries (Beneficiaries)
+
+	•	Functionality: Stores information about the beneficiaries of transactions.
+	•	Columns:
+	•	id_beneficiary: Unique identifier for the beneficiary (primary key).
+	•	name_beneficiary: Name of the beneficiary.
+	•	address: Address of the beneficiary.
+	•	phone: Phone number of the beneficiary.
+	•	email: Email of the beneficiary.
+
+9. Table user_settings (User Settings)
+
+	•	Functionality: Stores user settings such as language preferences, date format, etc.
+	•	Columns:
+	•	id_user: Unique identifier for the user (primary key).
+	•	default_currency: Reference to currencies for the user’s default currency.
+	•	date_format: Chosen date format.
+	•	number_format: Chosen number format.
+	•	language: User interface language.
+	•	theme: Chosen theme (light or dark).
+
+10. Table attachments (Attachments)
+
+	•	Functionality: Stores file paths for attachments related to transactions, accounts, or users.
+	•	Columns:
+	•	id_attachment: Unique identifier for the attachment (primary key).
+	•	file_path: Path to the file (PNG, JPG, PDF).
+	•	file_type: Type of file (png, jpg, pdf).
+	•	id_transaction: Reference to an associated transaction (optional).
+	•	id_account: Reference to an associated account (optional).
+	•	id_user: Reference to an associated user (optional).
+	•	description: Description of the attachment.

@@ -1,74 +1,74 @@
 <!DOCTYPE TS>
-<TS version="2.1" language="fr_FR">
+<TS version="2.1" language="en_US">
   <context>
     <name>databaseManager</name>
     <message>
       <source>Erreur : Impossible d&apos;ouvrir le fichier SQL pour le hash.</source>
-      <translation>Erreur : Impossible d'ouvrir le fichier SQL pour le hash.</translation>
+      <translation>Error: Unable to open SQL file for hashing.</translation>
     </message>
     <message>
       <source>Erreur : Impossible de sauvegarder le fichier hash.</source>
-      <translation>Erreur : Impossible de sauvegarder le fichier hash.</translation>
+      <translation>Error: Unable to save the hash file.</translation>
     </message>
     <message>
       <source>Erreur : Impossible de lire le fichier hash.</source>
-      <translation>Erreur : Impossible de lire le fichier hash.</translation>
+      <translation>Error: Unable to read the hash file.</translation>
     </message>
     <message>
       <source>Erreur : Impossible de créer le répertoire ICyamBank.</source>
-      <translation>Erreur : Impossible de créer le répertoire ICyamBank.</translation>
+      <translation>Error: Unable to create ICyamBank directory.</translation>
     </message>
     <message>
       <source>Erreur : Impossible d&apos;ouvrir la base de données SQLite.</source>
-      <translation>Erreur : Impossible d'ouvrir la base de données SQLite.</translation>
+      <translation>Error: Unable to open SQLite database.</translation>
     </message>
     <message>
       <source>Erreur : Échec de la création des tables.</source>
-      <translation>Erreur : Échec de la création des tables.</translation>
+      <translation>Error: Failed to create tables.</translation>
     </message>
     <message>
       <source>Base de données créée avec succès.</source>
-      <translation>Base de données créée avec succès.</translation>
+      <translation>Database successfully created.</translation>
     </message>
     <message>
       <source>Attention : La base de données nécessite une mise à jour.</source>
-      <translation>Attention : La base de données nécessite une mise à jour.</translation>
+      <translation>Warning: The database needs an update.</translation>
     </message>
     <message>
       <source>La base de données est à jour.</source>
-      <translation>La base de données est à jour.</translation>
+      <translation>The database is up to date.</translation>
     </message>
     <message>
       <source>Erreur : Impossible de charger le fichier SQL.</source>
-      <translation>Erreur : Impossible de charger le fichier SQL.</translation>
+      <translation>Error: Unable to load SQL file.</translation>
     </message>
     <message>
       <source>Erreur d&apos;exécution SQL :</source>
-      <translation>Erreur d'exécution SQL :</translation>
+      <translation>SQL execution error:</translation>
     </message>
     <message>
           <source>Comptes de Bilan</source>
-          <translation>Comptes de Bilan</translation>
+          <translation>Balance Sheet Accounts</translation>
         </message>
         <message>
           <source>Comptes de Bénéfice et de Perte</source>
-          <translation>Comptes de Bénéfice et de Perte</translation>
+          <translation>Profit and Loss Accounts</translation>
         </message>
         <message>
           <source>Banques</source>
-          <translation>Banques</translation>
+          <translation>Banks</translation>
         </message>
         <message>
           <source>Portefeuilles</source>
-          <translation>Portefeuilles</translation>
+          <translation>Wallets</translation>
         </message>
         <message>
           <source>Biens</source>
-          <translation>Biens</translation>
+          <translation>Assets</translation>
         </message>
         <message>
           <source>Dettes</source>
-          <translation>Dettes</translation>
+          <translation>Debts</translation>
         </message>
         <message>
           <source>Capital</source>
@@ -76,11 +76,11 @@
         </message>
         <message>
           <source>Revenus</source>
-          <translation>Revenus</translation>
+          <translation>Income</translation>
         </message>
         <message>
           <source>Dépenses</source>
-          <translation>Dépenses</translation>
+          <translation>Expenses</translation>
         </message>
   </context>
 </TS>

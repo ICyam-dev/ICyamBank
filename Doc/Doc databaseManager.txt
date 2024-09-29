@@ -1,0 +1,125 @@
+Documentation technique et fonctionnelle - databaseManager
+
+Introduction
+
+La classe databaseManager joue un rôle clé dans la gestion des opérations liées à la base de données pour l’application ICyamBank. Elle assure la création, la vérification, la gestion des données par défaut et la maintenance de la base de données utilisée par l’application. Cette documentation détaille son fonctionnement ainsi que ses principales responsabilités techniques et fonctionnelles.
+
+1. Fonctionnement technique
+
+a) Chemin de la base de données
+
+La classe détermine le chemin d’accès à la base de données en utilisant les chemins standard du système de l’utilisateur. La méthode responsable crée et vérifie l’existence du dossier dédié ICyamBank dans le répertoire Documents de l’utilisateur, où est stockée la base de données.
+
+b) Création de la base de données
+
+	•	Cas où la base de données n’existe pas :
+Si aucune base de données utilisateur n’est trouvée, la base de données de référence vierge est copiée depuis les ressources de l’application. Après la copie, la base de données est préparée pour être utilisée, et un hash est généré pour vérifier sa structure.
+	•	Cas où la base de données existe :
+Lorsque la base de données est déjà présente sur le système, la classe compare le hash généré à partir de la base de référence vierge avec le hash sauvegardé lors de la dernière création de la base utilisateur. Si ces deux valeurs divergent, l’utilisateur est informé de la nécessité de mettre à jour la base de données.
+
+c) Gestion des droits d’accès
+
+Une fois la base de données copiée, des permissions en lecture et en écriture sont accordées pour permettre l’insertion des données par défaut. Après cette phase d’insertion, ces permissions peuvent être adaptées selon les besoins.
+
+d) Gestion du hash de la base de données
+
+	•	Génération du hash :
+La méthode génère un hash SHA256 à partir de la base de données afin d’assurer l’intégrité de la structure.
+	•	Sauvegarde et chargement du hash :
+Le hash généré est sauvegardé dans un fichier nommé db_hash stocké dans le même dossier que la base de données. Ce hash est utilisé pour comparer la structure de la base lors des démarrages ultérieurs de l’application.
+
+e) Insertion des données par défaut
+
+Une fois la base de données initiale prête, des groupes de comptes ainsi que des types prédéfinis sont insérés, traduits selon la langue active de l’utilisateur. Ces données sont essentielles au bon fonctionnement de l’application, offrant une structure de base pour les opérations financières.
+
+2. Fonctionnement fonctionnel
+
+a) Initialisation de la base de données
+
+Lorsque l’utilisateur lance l’application pour la première fois ou qu’aucune base de données n’est présente, databaseManager effectue les opérations suivantes :
+
+	1.	Créer le répertoire de stockage.
+	2.	Copier la base de données vierge.
+	3.	Générer et sauvegarder un hash pour garantir l’intégrité des futures modifications.
+	4.	Insérer les données par défaut, traduites dans la langue active de l’utilisateur.
+
+b) Vérification de l’intégrité de la base de données
+
+À chaque démarrage de l’application, la classe vérifie l’intégrité de la base de données utilisateur. En comparant le hash de la base de référence avec celui précédemment sauvegardé, l’application s’assure que la structure de la base n’a pas été altérée. En cas de divergence, l’utilisateur est notifié qu’une mise à jour de la base de données est nécessaire.
+
+c) Traduction dynamique des données
+
+databaseManager permet de gérer des données multilingues. Lors de l’insertion des données par défaut (groupes et types de comptes), les intitulés sont traduits dynamiquement selon la langue active définie par l’utilisateur, garantissant une cohérence dans l’expérience utilisateur, quel que soit le paramètre de langue.
+
+d) Gestion des permissions
+
+Une attention particulière est accordée à la gestion des permissions d’accès à la base de données. Après la copie de la base vierge, les permissions en écriture sont attribuées temporairement pour permettre l’insertion des données par défaut, puis ajustées en fonction des besoins.
+
+Conclusion
+
+La classe databaseManager constitue une brique essentielle dans la gestion de la base de données d’ICyamBank. Elle combine des responsabilités techniques, comme la gestion des permissions et des hash, et des aspects fonctionnels, comme l’insertion de données par défaut adaptées à la langue de l’utilisateur. La robustesse de cette classe garantit l’intégrité et la cohérence des données tout au long du cycle de vie de l’application.
+
+English Version
+
+Technical and Functional Documentation - databaseManager
+
+Introduction
+
+The databaseManager class plays a key role in managing database-related operations for the ICyamBank application. It handles the creation, verification, default data management, and maintenance of the database used by the application. This documentation explains its technical and functional responsibilities.
+
+1. Technical Operation
+
+a) Database Path
+
+The class determines the access path to the database by using the user’s standard system paths. The method creates and verifies the existence of the dedicated ICyamBank folder in the user’s Documents directory, where the database is stored.
+
+b) Database Creation
+
+	•	Case when the database does not exist:
+If no user database is found, a blank reference database is copied from the application’s resources. After copying, the database is prepared for use, and a hash is generated to verify its structure.
+	•	Case when the database exists:
+When the database is already present on the system, the class compares the hash generated from the blank reference database with the hash saved during the last creation of the user database. If these two values differ, the user is notified of the need to update the database.
+
+c) Access Permissions Management
+
+Once the database is copied, read and write permissions are granted to allow the insertion of default data. After this insertion phase, these permissions can be adjusted as needed.
+
+d) Database Hash Management
+
+	•	Hash Generation:
+The method generates a SHA256 hash from the database to ensure the integrity of its structure.
+	•	Hash Saving and Loading:
+The generated hash is saved in a file named db_hash stored in the same folder as the database. This hash is used to compare the database structure at future application starts.
+
+e) Default Data Insertion
+
+Once the initial database is ready, account groups and predefined types are inserted, translated according to the user’s active language. This data is essential for the proper functioning of the application, providing a basic structure for financial operations.
+
+2. Functional Operation
+
+a) Database Initialization
+
+When the user launches the application for the first time or when no database is present, databaseManager performs the following operations:
+
+	1.	Create the storage directory.
+	2.	Copy the blank database.
+	3.	Generate and save a hash to ensure the integrity of future modifications.
+	4.	Insert default data, translated into the user’s active language.
+
+b) Database Integrity Verification
+
+Each time the application is launched, the class verifies the integrity of the user database. By comparing the hash of the reference database with the previously saved hash, the application ensures that the database structure has not been altered. If there is a mismatch, the user is notified that a database update is necessary.
+
+c) Dynamic Data Translation
+
+databaseManager allows for the management of multilingual data. When inserting default data (account groups and types), the labels are dynamically translated based on the user’s active language, ensuring a consistent user experience regardless of the language setting.
+
+d) Permission Management
+
+Special attention is given to managing database access permissions. After copying the blank database, write permissions are temporarily granted to allow the insertion of default data, then adjusted as needed.
+
+Conclusion
+
+The databaseManager class is a critical component in managing ICyamBank’s database. It combines technical responsibilities, such as permission and hash management, with functional aspects, such as inserting default data adapted to the user’s language. This class’s robustness ensures the integrity and consistency of data throughout the application’s lifecycle.
+
+This dual documentation provides a clear overview of how the databaseManager class functions and its critical role within the ICyamBank project.
