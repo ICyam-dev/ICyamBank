@@ -10,12 +10,16 @@ CONFIG += c++17
 
 SOURCES += \
     src/databaseManager.cpp \
+    src/interfaceManager.cpp \
+    src/leftcolumnManager.cpp \
     src/main.cpp \
     src/mainwindow.cpp
 
 HEADERS += \
+    header/interfaceManager.h \
+    header/databaseManager.h \
     header/mainwindow.h \
-    header/databaseManager.h
+    header/leftcolumnManager.h
 
 FORMS += \
     ui/mainwindow.ui

@@ -10,10 +10,10 @@
 #include <QCryptographicHash>
 #include <QSqlError>
 #include <QObject>
-#include <QMessageBox>  // Ajout pour les messages pop-up // Added for pop-up messages
+#include <QMessageBox>
 #include <QHash>
 
-                      QString databaseManager::getDatabasePath() {
+    QString databaseManager::getDatabasePath() {
     // Récupérer le chemin des documents utilisateurs
     // Get the path of the user's documents
     QString documentsPath = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
@@ -30,7 +30,7 @@ QString databaseManager::getHashFilePath() {
 
     // Vérification du chemin de fichier
     // Verify the file path
-    qDebug() << "Chemin du fichier hash:" << hashFilePath;  // Debug path
+    qDebug() << "Chemin du fichier hash:" << hashFilePath;
 
     return hashFilePath;
 }
@@ -40,13 +40,17 @@ QString databaseManager::generateHashFromFile(const QString &filePath) {
     // Generate a SHA256 hash from the contents of a file
     QFile file(filePath);
     if (!file.open(QIODevice::ReadOnly)) {
-        qDebug() << QObject::tr("Erreur : Impossible d'ouvrir le fichier pour générer le hash.") << filePath;  // Affiche également le chemin du fichier // Also displays the file path
+        qDebug() << QObject::tr("Erreur : Impossible d'ouvrir le fichier pour générer le hash.") << filePath;
+        // Affiche également le chemin du fichier
+        // Also displays the file path
         return QString();
     }
 
     QCryptographicHash hash(QCryptographicHash::Sha256);  // Utiliser l'algorithme SHA256 // Using SHA256 algorithm
     if (hash.addData(&file)) {
-        return QString(hash.result().toHex());  // Retourner le hash sous forme de chaîne hexadécimale // Return the hash as a hexadecimal string
+        // Retourner le hash sous forme de chaîne hexadécimale
+        // Return the hash as a hexadecimal string
+        return QString(hash.result().toHex());
     }
 
     return QString();
@@ -59,14 +63,18 @@ bool databaseManager::saveHashToFile(const QString &hash) {
 
     QFile file(hashFilePath);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        qDebug() << QObject::tr("Erreur : Impossible de sauvegarder le fichier hash.") << hashFilePath;  // Affiche également le chemin du fichier // Also displays the file path
+        qDebug() << QObject::tr("Erreur : Impossible de sauvegarder le fichier hash.") << hashFilePath;
+        // Affiche également le chemin du fichier
+        // Also displays the file path
         return false;
     }
 
     QTextStream out(&file);
     out << hash;
 
-    qDebug() << QObject::tr("Hash sauvegardé avec succès.") << hashFilePath;  // Ajout d'un message pour confirmer la sauvegarde // Added a message to confirm the save
+    // Ajout d'un message pour confirmer la sauvegarde
+    // Added a message to confirm the save
+    qDebug() << QObject::tr("Hash sauvegardé avec succès.") << hashFilePath;
     return true;
 }
 
@@ -77,14 +85,18 @@ QString databaseManager::loadHashFromFile() {
 
     QFile file(hashFilePath);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        qDebug() << QObject::tr("Erreur : Impossible de lire le fichier hash.") << hashFilePath;  // Affiche également le chemin du fichier // Also displays the file path
+        qDebug() << QObject::tr("Erreur : Impossible de lire le fichier hash.") << hashFilePath;
+        // Affiche également le chemin du fichier
+        // Also displays the file path
         return QString();
     }
 
     QTextStream in(&file);
     QString hash = in.readAll().trimmed();
 
-    qDebug() << QObject::tr("Hash chargé avec succès.") << hashFilePath;  // Ajout d'un message pour confirmer le chargement // Added a message to confirm the loading
+    // Ajout d'un message pour confirmer le chargement
+    // Added a message to confirm the loading
+    qDebug() << QObject::tr("Hash chargé avec succès.") << hashFilePath;
     return hash;
 }
 
@@ -92,6 +104,7 @@ bool databaseManager::setupDatabase() {
     QString dbPath = getDatabasePath();
 
     // Créer le répertoire s'il n'existe pas
+    // Create the directory if it doesn't exist
     QDir dir;
     if (!dir.exists(QFileInfo(dbPath).path())) {
         if (!dir.mkpath(QFileInfo(dbPath).path())) {
@@ -100,9 +113,11 @@ bool databaseManager::setupDatabase() {
         }
     }
 
-    // Cas où la base de données n'existe pas
+    // Si la base de données n'existe pas
+    // If the database does not exist
     if (!QFile::exists(dbPath)) {
         // 1. Copier la base de données depuis les ressources
+        // 1. Copy the database from the resources
         if (!QFile::copy(":/database/ICyamBank.db", dbPath)) {
             qDebug() << QObject::tr("Erreur : Échec de la copie de la base de données vierge.");
             return false;
@@ -110,6 +125,7 @@ bool databaseManager::setupDatabase() {
         qDebug() << QObject::tr("Base de données vierge copiée avec succès.");
 
         // 2. Générer le hash de la base copiée et le sauvegarder
+        // 2. Generate the hash of the copied database and save it
         QString initialHash = generateHashFromFile(dbPath);
         if (!initialHash.isEmpty()) {
             if (!saveHashToFile(initialHash)) {
@@ -122,38 +138,18 @@ bool databaseManager::setupDatabase() {
         }
 
         // 3. Modifier les droits en écriture sur la base de données copiée
+        // 3. Modify write permissions on the copied database
         QFile::setPermissions(dbPath, QFileDevice::WriteOwner | QFileDevice::ReadOwner);
-
-        // 4. Ouvrir la base de données et insérer les données par défaut
-        QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-        db.setDatabaseName(dbPath);
-
-        if (!db.open()) {
-            qDebug() << QObject::tr("Erreur : Impossible d'ouvrir la base de données SQLite après copie.");
-            return false;
-        }
-
-        // Insertion des données par défaut
-        if (!insertDefaultData(db)) {
-            qDebug() << QObject::tr("Erreur : Impossible d'insérer les données par défaut.");
-            db.close();
-            return false;
-        }
-
-        db.close(); // Fermer la base de données après insertion
-        qDebug() << QObject::tr("Données par défaut insérées avec succès.");
 
     } else {
         // Cas où la base de données existe déjà
-        // 1. Générer le hash de la base de référence dans les ressources
+        // Case when the database already exists
         QString referenceHash = generateHashFromFile(":/database/ICyamBank.db");
-
-        // 2. Charger le hash sauvegardé
         QString savedHash = loadHashFromFile();
 
-        // 3. Comparer les deux hash
+        // Si les hash sont différents, informer de la nécessité d'une mise à jour
+        // If the hashes differ, inform of the need for an update
         if (referenceHash != savedHash) {
-            // Si les hash sont différents, informer de la nécessité d'une mise à jour
             QMessageBox::information(nullptr, QObject::tr("Mise à jour requise"), QObject::tr("La base de données doit être mise à jour."));
             qDebug() << QObject::tr("Attention : La base de données nécessite une mise à jour.");
         } else {
@@ -161,76 +157,18 @@ bool databaseManager::setupDatabase() {
         }
     }
 
-    return true;
-}
+    // Vérifier et ouvrir la base de données pour des usages ultérieurs
+    // Verify and open the database for further use
+    QSqlDatabase db = QSqlDatabase::database("ICyamBankConnection");
+    if (!db.isOpen()) {
+        db = QSqlDatabase::addDatabase("QSQLITE", "ICyamBankConnection");
+        db.setDatabaseName(dbPath);
 
-// Fonction pour insérer les données par défaut dans la langue de l'utilisateur
-bool databaseManager::insertDefaultData(QSqlDatabase &db) {
-    QSqlQuery query(db);
-
-    // Traduction des textes français par la langue active
-    QString balanceGroup = QObject::tr("Comptes de Bilan");
-    QString profitGroup = QObject::tr("Comptes de Bénéfice et de Perte");
-
-    // Traduction des types de comptes pour le groupe de Bilan
-    QString banksType = QObject::tr("Banques");
-    QString walletsType = QObject::tr("Portefeuilles");
-    QString assetsType = QObject::tr("Biens");
-    QString debtsType = QObject::tr("Dettes");
-    QString capitalType = QObject::tr("Capital");
-
-    // Traduction des types de comptes pour le groupe de Bénéfice et de Perte
-    QString incomeType = QObject::tr("Revenus");
-    QString expensesType = QObject::tr("Dépenses");
-
-    // Insertion des groupes de comptes
-    if (!query.exec(QString("INSERT INTO account_groups (name_group) VALUES ('%1')").arg(balanceGroup))) {
-        qDebug() << "Erreur d'insertion pour le groupe de Bilan:" << query.lastError().text();
-        return false;
-    }
-    if (!query.exec(QString("INSERT INTO account_groups (name_group) VALUES ('%1')").arg(profitGroup))) {
-        qDebug() << "Erreur d'insertion pour le groupe de Bénéfice et de Perte:" << query.lastError().text();
-        return false;
+        if (!db.open()) {
+            qDebug() << QObject::tr("Erreur : Impossible d'ouvrir la base de données SQLite.");
+            return false;
+        }
     }
 
-    // Récupérer l'id du groupe de Bilan pour l'insertion des types
-    int balanceGroupId = query.lastInsertId().toInt();
-
-    // Insertion des types de comptes pour le groupe de Bilan
-    if (!query.exec(QString("INSERT INTO account_types (id_group, name_type) VALUES (%1, '%2')").arg(balanceGroupId).arg(banksType))) {
-        qDebug() << "Erreur d'insertion pour le type Banques:" << query.lastError().text();
-        return false;
-    }
-    if (!query.exec(QString("INSERT INTO account_types (id_group, name_type) VALUES (%1, '%2')").arg(balanceGroupId).arg(walletsType))) {
-        qDebug() << "Erreur d'insertion pour le type Portefeuilles:" << query.lastError().text();
-        return false;
-    }
-    if (!query.exec(QString("INSERT INTO account_types (id_group, name_type) VALUES (%1, '%2')").arg(balanceGroupId).arg(assetsType))) {
-        qDebug() << "Erreur d'insertion pour le type Biens:" << query.lastError().text();
-        return false;
-    }
-    if (!query.exec(QString("INSERT INTO account_types (id_group, name_type) VALUES (%1, '%2')").arg(balanceGroupId).arg(debtsType))) {
-        qDebug() << "Erreur d'insertion pour le type Dettes:" << query.lastError().text();
-        return false;
-    }
-    if (!query.exec(QString("INSERT INTO account_types (id_group, name_type) VALUES (%1, '%2')").arg(balanceGroupId).arg(capitalType))) {
-        qDebug() << "Erreur d'insertion pour le type Capital:" << query.lastError().text();
-        return false;
-    }
-
-    // Récupérer l'id du groupe de Bénéfice et de Perte pour l'insertion des types
-    int profitGroupId = query.lastInsertId().toInt();
-
-    // Insertion des types de comptes pour le groupe de Bénéfice et de Perte
-    if (!query.exec(QString("INSERT INTO account_types (id_group, name_type) VALUES (%1, '%2')").arg(profitGroupId).arg(incomeType))) {
-        qDebug() << "Erreur d'insertion pour le type Revenus:" << query.lastError().text();
-        return false;
-    }
-    if (!query.exec(QString("INSERT INTO account_types (id_group, name_type) VALUES (%1, '%2')").arg(profitGroupId).arg(expensesType))) {
-        qDebug() << "Erreur d'insertion pour le type Dépenses:" << query.lastError().text();
-        return false;
-    }
-
-    qDebug() << "Données par défaut insérées avec succès.";
     return true;
 }
