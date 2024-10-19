@@ -1,0 +1,89 @@
+Documentation technique et fonctionnelle de winAbout
+
+FRANÇAIS :
+
+La classe winAbout est une fenêtre de dialogue modale utilisée pour afficher des informations sur l’application ICyamBank. Son objectif est de fournir des détails sur la version du logiciel ainsi que d’autres informations pertinentes à l’utilisateur, telles que le logo et les détails d’auteur ou de licence.
+
+Fonctionnalités principales :
+
+	1.	Affichage des informations de version :
+	•	La fenêtre winAbout affiche la version actuelle de l’application, composée de plusieurs composants comme l’état de la version (alpha, beta, stable), les numéros de version majeure, mineure et de build, ainsi que les informations spécifiques de la configuration actuelle.
+	2.	Affichage du logo de l’application :
+	•	Le logo officiel de ICyamBank est affiché en haut à gauche de la fenêtre, permettant aux utilisateurs d’identifier visuellement le produit.
+	3.	Bouton pour fermer la fenêtre :
+	•	Un simple bouton “Ok” est fourni pour permettre à l’utilisateur de fermer la fenêtre après avoir consulté les informations. Ce bouton est lié à l’événement accept() pour que la fermeture soit simple et intuitive.
+	4.	Fenêtre modale :
+	•	La fenêtre winAbout est modale, ce qui signifie que lorsque cette fenêtre est ouverte, aucune autre interaction avec l’application principale n’est possible tant que l’utilisateur n’a pas fermé cette fenêtre.
+
+Structure de la fenêtre :
+
+	1.	Logo de l’application :
+	•	Situé dans le coin supérieur gauche de la fenêtre, le logo apporte une identité visuelle forte à l’application.
+	2.	Titre de l’application :
+	•	Sous le logo, un texte stylisé affiche le nom de l’application “ICyamBank”, avec une taille et une police en gras pour attirer l’attention.
+	3.	Affichage de la version :
+	•	Une zone de texte est dédiée à l’affichage dynamique de la version du logiciel. Ces informations sont récupérées et construites en utilisant des macros définies dans le fichier version.h. Ce fichier contient des informations telles que le numéro de version majeure, mineure, ainsi que le numéro de build.
+	4.	Bouton de fermeture “Ok” :
+	•	Situé en bas à droite, ce bouton permet à l’utilisateur de fermer la fenêtre. Il est configuré pour appeler la méthode accept().
+
+Gestion de la base de données :
+
+Cette fenêtre ne nécessite pas de gestion directe de la base de données. Son but est purement informatif, elle ne modifie pas les données et ne requiert pas d’interactions avec les tables de la base.
+
+Processus de génération des informations de version :
+
+	1.	Inclusion du fichier version.h :
+	•	Le fichier version.h contient toutes les macros nécessaires pour construire la chaîne de version qui sera affichée dans la fenêtre. Les macros utilisées incluent les numéros de version majeures, mineures, et de build, ainsi que des informations sur l’état de la version (par exemple : alpha, beta, release).
+	2.	Construction dynamique de la chaîne de version :
+	•	Dans le constructeur de la classe, une chaîne de caractères est formée en concaténant ces macros pour créer un texte cohérent qui sera ensuite affiché dans le champ labelVersion.
+
+Scénarios d’utilisation :
+
+	1.	Consultation d’informations sur l’application :
+	•	L’utilisateur peut accéder à cette fenêtre via le menu “Aide” de l’application pour vérifier la version actuelle du logiciel et d’autres informations associées.
+	2.	Affichage des informations de debug ou de support :
+	•	Lors du support ou du débogage, les informations de version peuvent être cruciales pour identifier les correctifs ou les mises à jour disponibles.
+
+ENGLISH :
+
+The winAbout class is a modal dialog window used to display information about the ICyamBank application. Its purpose is to provide details on the current version of the software and other relevant information to the user, such as the logo and author or license details.
+
+Main Features:
+
+	1.	Display Version Information:
+	•	The winAbout window shows the current version of the application, composed of several components such as the version state (alpha, beta, stable), major and minor version numbers, and build information, along with other specific configuration details.
+	2.	Display the Application Logo:
+	•	The official ICyamBank logo is displayed in the upper-left corner, helping users visually identify the product.
+	3.	Button to Close the Window:
+	•	A simple “Ok” button is provided to allow the user to close the window after reviewing the information. This button is tied to the accept() event, making the closing process easy and intuitive.
+	4.	Modal Window:
+	•	The winAbout window is modal, meaning that while this window is open, no other interaction with the main application is allowed until the user closes this window.
+
+Window Structure:
+
+	1.	Application Logo:
+	•	Located in the top left corner, the logo brings a strong visual identity to the application.
+	2.	Application Title:
+	•	Below the logo, a stylized text shows the application’s name “ICyamBank” with a bold and large font to grab attention.
+	3.	Version Information:
+	•	A text area is dedicated to dynamically displaying the software version. This information is retrieved and built using macros defined in the version.h file. The file contains data such as the major, minor, and build numbers, along with the version state (e.g., alpha, beta, release).
+	4.	“Ok” Button:
+	•	Located at the bottom right, this button allows the user to close the window. It is set to call the accept() method to close the window.
+
+Database Management:
+
+This window does not require direct database management. Its purpose is purely informative, it does not modify data and does not require interactions with database tables.
+
+Version Information Generation Process:
+
+	1.	Including the version.h File:
+	•	The version.h file contains all the macros necessary to build the version string that will be displayed in the window. The macros used include major, minor, and build version numbers, as well as the version state (e.g., alpha, beta, release).
+	2.	Dynamically Building the Version String:
+	•	In the class constructor, a string is formed by concatenating these macros to create a coherent text that will then be displayed in the labelVersion field.
+
+Usage Scenarios:
+
+	1.	Consulting Application Information:
+	•	The user can access this window via the “Help” menu in the application to check the current version of the software and other associated information.
+	2.	Displaying Debug or Support Information:
+	•	During support or debugging, version information can be crucial in identifying available patches or updates.

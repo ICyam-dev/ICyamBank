@@ -1,0 +1,57 @@
+Documentation technique et fonctionnelle de winBank
+
+FRANÇAIS :
+
+La classe winBank est une fenêtre de dialogue permettant à l’utilisateur de gérer les informations relatives aux établissements bancaires dans l’application. Cette interface propose des fonctionnalités pour créer, modifier ou supprimer les banques tout en respectant le modèle de suppression logique (soft delete). Les utilisateurs peuvent également associer des informations de contact spécifiques à chaque banque.
+
+	1.	Fonctionnalité principale :
+	•	winBank permet de créer un nouvel établissement bancaire, de modifier les informations d’une banque existante ou de supprimer une banque de manière logique (soft delete).
+	•	Chaque banque peut être associée à des informations détaillées, telles que son adresse, son numéro de téléphone, son email, ainsi qu’un contact de la banque.
+	2.	Structure de la fenêtre :
+	•	ComboBox de sélection de banque : Permet à l’utilisateur de choisir une banque à modifier ou à supprimer, ou d’opter pour “Nouvelle Banque” pour créer un nouvel enregistrement.
+	•	Champs de texte pour les informations bancaires :
+	•	Nom de la banque : Nom complet de l’établissement bancaire.
+	•	Adresse (3 lignes) : Trois lignes d’adresse pour décrire l’emplacement physique de la banque.
+	•	Téléphone et Email : Coordonnées de la banque.
+	•	Contact à la banque : Nom, numéro de téléphone et email du contact spécifique à cet établissement.
+	•	Boutons :
+	•	OK : Permet d’enregistrer les informations (création ou modification).
+	•	Annuler : Ferme la fenêtre sans enregistrer de changements.
+	•	Supprimer : Marque la banque comme supprimée (suppression logique), rendant la banque inactive sans la retirer définitivement de la base de données.
+	3.	Gestion des modes (Création et Modification) :
+	•	Mode Création : Lorsque “Nouvelle Banque” est sélectionnée, tous les champs de saisie sont vides et prêts pour l’ajout d’un nouvel établissement. La ComboBox est désactivée pour éviter toute modification jusqu’à la validation.
+	•	Mode Modification : Lorsque l’utilisateur sélectionne une banque existante, les informations relatives à celle-ci sont chargées dans les champs de saisie pour permettre des ajustements. La banque sélectionnée peut ensuite être modifiée ou supprimée.
+	4.	Gestion de la base de données :
+	•	Chargement des banques : La méthode loadBankNames récupère la liste des banques non supprimées dans la base de données et les affiche dans la ComboBox.
+	•	Création ou modification : Selon le mode, la méthode handleBankOperation exécute une requête SQL pour insérer une nouvelle banque ou mettre à jour une banque existante.
+	•	Suppression logique : La méthode handleBankDeletion marque la banque comme supprimée dans la base de données en mettant à jour le champ is_deleted.
+	5.	Comportement de l’interface utilisateur :
+	•	L’interface ajuste dynamiquement les boutons et champs en fonction du mode sélectionné. Par exemple, le bouton “Supprimer” reste invisible tant qu’une banque n’est pas sélectionnée pour modification. Une fois un établissement sélectionné, l’interface permet de modifier les informations ou de supprimer la banque.
+
+ENGLISH :
+
+The winBank class is a dialog window allowing the user to manage information related to banking institutions in the application. This interface provides functionalities for creating, modifying, or logically deleting (soft delete) banks. Users can also associate specific contact information with each bank.
+
+	1.	Main functionality:
+	•	winBank allows users to create a new banking institution, modify an existing bank’s information, or soft delete a bank (i.e., mark it as inactive).
+	•	Each bank can have detailed information such as address, phone number, email, and a specific bank contact.
+	2.	Window structure:
+	•	Bank selection ComboBox: Allows users to choose a bank to modify or delete, or to select “New Bank” for creating a new record.
+	•	Text fields for bank information:
+	•	Bank Name: Full name of the banking institution.
+	•	Address (3 lines): Three address lines for describing the bank’s physical location.
+	•	Phone and Email: Contact details of the bank.
+	•	Bank Contact: Name, phone number, and email of a specific contact at the institution.
+	•	Buttons:
+	•	OK: Saves the information (creation or modification).
+	•	Cancel: Closes the window without saving any changes.
+	•	Delete: Marks the bank as deleted (soft delete), making the bank inactive without permanently removing it from the database.
+	3.	Mode management (Creation and Modification):
+	•	Creation mode: When “New Bank” is selected, all input fields are cleared and ready for adding a new institution. The ComboBox is disabled to prevent any changes until creation is confirmed.
+	•	Modification mode: When a bank is selected, its information is loaded into the input fields for adjustments. The selected bank can then be modified or deleted.
+	4.	Database management:
+	•	Loading banks: The loadBankNames method retrieves the list of non-deleted banks from the database and displays them in the ComboBox.
+	•	Creating or modifying: Depending on the mode, the handleBankOperation method executes an SQL query to insert a new bank or update an existing one.
+	•	Soft deletion: The handleBankDeletion method marks the bank as deleted in the database by updating the is_deleted field.
+	5.	User interface behavior:
+	•	The interface dynamically adjusts buttons and fields depending on the selected mode. For example, the “Delete” button remains hidden until a bank is selected for modification. Once an institution is selected, the interface allows users to either modify the information or delete the bank.

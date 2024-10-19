@@ -1,0 +1,51 @@
+Documentation technique et fonctionnelle de winGroup
+
+FRANÇAIS :
+
+La classe winGroup représente une fenêtre de dialogue utilisée pour gérer les groupes de comptes bancaires dans l’application. Cette fenêtre permet de créer, modifier ou supprimer des groupes de comptes, facilitant ainsi l’organisation des comptes en catégories logiques. Voici une vue détaillée de son fonctionnement.
+
+	1.	Fonctionnalité principale :
+	•	winGroup permet à l’utilisateur de créer un nouveau groupe de comptes ou de modifier un groupe existant.
+	•	Il est également possible de supprimer un groupe, avec une suppression logique (soft delete), c’est-à-dire que les données ne sont pas réellement effacées de la base de données mais marquées comme supprimées.
+	2.	Structure de la fenêtre :
+	•	Champ “Nom du groupe” : L’utilisateur peut entrer ou modifier le nom du groupe.
+	•	Champ “Courte description” : Permet de fournir une brève description du groupe pour une meilleure organisation.
+	•	ComboBox de sélection des groupes : Liste déroulante permettant à l’utilisateur de sélectionner un groupe à modifier ou à supprimer. Une option “Nouveau Groupe” permet de basculer en mode création.
+	•	Boutons :
+	•	OK : Enregistre les modifications ou crée un nouveau groupe en fonction du mode sélectionné (création ou modification).
+	•	Annuler : Ferme la fenêtre sans enregistrer les modifications.
+	•	Supprimer : Rend le groupe inactif via la méthode de suppression logique.
+	3.	Gestion des modes (Création et Modification) :
+	•	Mode Création : Lorsque l’utilisateur sélectionne “Nouveau Groupe” dans la ComboBox, tous les champs sont vides et prêts pour l’ajout d’un nouveau groupe. La ComboBox est désactivée pour empêcher la sélection d’un autre groupe tant que la création n’est pas terminée.
+	•	Mode Modification : Lorsqu’un groupe existant est sélectionné, les informations de ce groupe sont chargées dans les champs et prêtes à être modifiées.
+	4.	Gestion de la base de données :
+	•	Chargement des groupes : La méthode loadGroupNames interroge la base de données pour récupérer la liste des groupes actifs et les afficher dans la ComboBox.
+	•	Création ou modification : En fonction du mode, la méthode handleGroupOperation exécute une requête SQL pour ajouter un nouveau groupe ou mettre à jour un groupe existant.
+	•	Suppression logique : La méthode handleGroupDeletion marque le groupe comme supprimé dans la base de données en mettant à jour le champ is_deleted.
+	5.	Comportement de l’interface utilisateur :
+	•	L’interface est conçue pour être simple et intuitive, permettant à l’utilisateur de gérer les groupes sans complexité. Les éléments sont verrouillés ou activés en fonction du mode sélectionné (création ou modification).
+
+ENGLISH :
+
+The winGroup class represents a dialog window used to manage bank account groups in the application. This window allows users to create, modify, or delete account groups, facilitating the organization of accounts into logical categories. Here’s a detailed view of its functionality.
+
+	1.	Main functionality:
+	•	winGroup allows users to create a new account group or modify an existing one.
+	•	It is also possible to delete a group using a soft delete approach, meaning the data is not actually erased from the database but is marked as deleted.
+	2.	Window structure:
+	•	“Group Name” field: The user can enter or modify the group’s name.
+	•	“Short description” field: Allows the user to provide a brief description of the group for better organization.
+	•	Group selection ComboBox: A dropdown list allowing the user to select a group to modify or delete. A “New Group” option enables the creation mode.
+	•	Buttons:
+	•	OK: Saves changes or creates a new group depending on the selected mode (creation or modification).
+	•	Cancel: Closes the window without saving any changes.
+	•	Delete: Soft deletes the group by marking it as inactive in the database.
+	3.	Mode management (Creation and Modification):
+	•	Creation mode: When the user selects “New Group” in the ComboBox, all fields are cleared and ready for adding a new group. The ComboBox is disabled to prevent switching to another group until creation is complete.
+	•	Modification mode: When an existing group is selected, the information of that group is loaded into the fields and ready to be modified.
+	4.	Database management:
+	•	Loading groups: The loadGroupNames method queries the database to retrieve a list of active groups and display them in the ComboBox.
+	•	Creating or modifying: Depending on the mode, the handleGroupOperation method executes an SQL query to add a new group or update an existing one.
+	•	Soft deletion: The handleGroupDeletion method marks the group as deleted in the database by updating the is_deleted field.
+	5.	User interface behavior:
+	•	The interface is designed to be simple and intuitive, allowing users to manage groups without complexity. Elements are locked or enabled based on the selected mode (creation or modification).

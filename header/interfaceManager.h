@@ -1,21 +1,23 @@
 #ifndef INTERFACEMANAGER_H
 #define INTERFACEMANAGER_H
 
-// Classe InterfaceManager pour la gestion de l'interface utilisateur
-// InterfaceManager class for managing the user interface
-class interfaceManager
+#include <QObject>
+#include <QComboBox>
+#include <QTreeWidget>
+#include <QSplitter>
+#include "leftcolumnManager.h"
+
+class InterfaceManager : public QObject
 {
+    Q_OBJECT
+
 public:
-    // Constructeur
-    // Constructor
-    interfaceManager();
+    InterfaceManager(QSplitter* splitter, QComboBox* comboBox, QTreeWidget* treeWidget, QWidget* parent = nullptr);
+    ~InterfaceManager();
 
-    // Destructeur
-    // Destructor
-    ~interfaceManager();
-
-    // Méthodes supplémentaires peuvent être ajoutées ici
-    // Additional methods can be added here
+private:
+    LeftColumnManager* leftColumnManager;  // Pointeur vers le gestionnaire de la colonne gauche / Pointer to the left column manager
+    void setupSplitter(QSplitter* splitter, QWidget* parent);  // Configure le QSplitter avec les limites et les proportions / Set up the QSplitter with limits and proportions
 };
 
 #endif // INTERFACEMANAGER_H

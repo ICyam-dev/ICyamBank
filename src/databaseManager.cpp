@@ -13,7 +13,7 @@
 #include <QMessageBox>
 #include <QHash>
 
-    QString databaseManager::getDatabasePath() {
+QString databaseManager::getDatabasePath() {
     // Récupérer le chemin des documents utilisateurs
     // Get the path of the user's documents
     QString documentsPath = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
@@ -113,6 +113,17 @@ bool databaseManager::setupDatabase() {
         }
     }
 
+    // Créer un dossier 'documents' dans le même emplacement que la base de données
+    // Create a 'documents' folder in the same location as the database
+    QString documentsDirectory = QFileInfo(dbPath).path() + "/_docs";
+    if (!dir.exists(documentsDirectory)) {
+        if (!dir.mkpath(documentsDirectory)) {
+            qDebug() << QObject::tr("Erreur : Impossible de créer le répertoire 'documents'.");
+            return false;
+        }
+        qDebug() << QObject::tr("Répertoire 'documents' créé avec succès.");
+    }
+
     // Si la base de données n'existe pas
     // If the database does not exist
     if (!QFile::exists(dbPath)) {
@@ -160,15 +171,48 @@ bool databaseManager::setupDatabase() {
     // Vérifier et ouvrir la base de données pour des usages ultérieurs
     // Verify and open the database for further use
     QSqlDatabase db = QSqlDatabase::database("ICyamBankConnection");
-    if (!db.isOpen()) {
+    if (!db.isValid()) {
+        qDebug() << "La connexion ICyamBankConnection n'est pas valide, tentative d'ajout d'une nouvelle connexion.";
         db = QSqlDatabase::addDatabase("QSQLITE", "ICyamBankConnection");
         db.setDatabaseName(dbPath);
-
-        if (!db.open()) {
-            qDebug() << QObject::tr("Erreur : Impossible d'ouvrir la base de données SQLite.");
-            return false;
-        }
     }
 
+    if (!db.open()) {
+        qDebug() << QObject::tr("Erreur : Impossible d'ouvrir la base de données SQLite.");
+        qDebug() << "Erreur SQL:" << db.lastError().text();  // Afficher l'erreur SQL détaillée
+        return false;
+    }
+
+    qDebug() << "Base de données SQLite ouverte avec succès.";
+    return true;
+}
+
+// Désactiver une banque en mode "soft delete" / Soft delete for a bank
+bool databaseManager::deactivateBank(int bankId) {
+    QSqlQuery query;
+    query.prepare("UPDATE bank SET is_active = 0 WHERE id_bank = :id");
+    query.bindValue(":id", bankId);
+
+    if (!query.exec()) {
+        qDebug() << "Erreur SQL lors de la désactivation de la banque:" << query.lastError().text();
+        return false;
+    }
+
+    qDebug() << "Banque désactivée avec succès.";
+    return true;
+}
+
+// Désactiver tous les comptes associés à une banque / Deactivate all accounts associated with a bank
+bool databaseManager::deactivateAccountsForBank(int bankId) {
+    QSqlQuery query;
+    query.prepare("UPDATE account SET is_active = 0 WHERE id_bank = :id");
+    query.bindValue(":id", bankId);
+
+    if (!query.exec()) {
+        qDebug() << "Erreur SQL lors de la désactivation des comptes pour la banque:" << query.lastError().text();
+        return false;
+    }
+
+    qDebug() << "Comptes liés à la banque désactivés avec succès.";
     return true;
 }

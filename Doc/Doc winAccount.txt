@@ -1,0 +1,109 @@
+Documentation technique et fonctionnelle de winAccount
+
+FRANÇAIS :
+
+La classe winAccount est une fenêtre de dialogue utilisée pour gérer les comptes bancaires de l’utilisateur. Elle permet la création, la modification, et la suppression logique (soft delete) des comptes bancaires, tout en gérant les différentes informations associées, telles que la banque, le groupe de compte, le type de compte, le solde, et les documents liés au compte.
+
+Fonctionnalités principales :
+
+	1.	Création et modification de comptes bancaires :
+	•	L’utilisateur peut créer un nouveau compte bancaire ou modifier un compte existant. Les informations obligatoires incluent le nom du compte, la banque associée, le type de compte, et le solde. D’autres informations comme le groupe et la description sont facultatives.
+	2.	Suppression logique des comptes :
+	•	La suppression d’un compte ne le supprime pas de la base de données. Au lieu de cela, il est marqué comme supprimé (soft delete), ce qui le rend inactif tout en conservant les données liées dans la base pour une potentielle réactivation ou audit.
+	3.	Gestion des documents associés :
+	•	Des documents peuvent être associés à chaque compte, comme des relevés bancaires ou des contrats. Ces documents peuvent être ajoutés via une boîte de dialogue et stockés dans un répertoire dédié dans l’application.
+	4.	Fonctionnalités de groupe :
+	•	Les comptes peuvent être associés à un groupe, ce qui permet de les regrouper pour des raisons de gestion ou de reporting. L’utilisateur a également la possibilité d’indiquer si le solde du compte doit être pris en compte dans le calcul du solde total du groupe.
+	5.	Fonctionnalités avancées :
+	•	Le formulaire propose des onglets pour une meilleure organisation des informations (essentielles, documents, groupes, etc.). L’utilisateur peut facilement naviguer entre les informations essentielles du compte et les documents qui y sont liés.
+
+Structure de la fenêtre :
+
+	1.	ComboBox de sélection de compte :
+	•	Permet de choisir un compte à modifier ou d’opter pour “Nouveau Compte” pour créer un nouveau compte.
+	2.	Champs d’informations :
+	•	Nom du compte : Nom du compte bancaire.
+	•	Type de compte : Type de compte (épargne, courant, etc.).
+	•	Banque associée : Banque à laquelle le compte est rattaché.
+	•	Solde : Solde actuel du compte.
+	•	Devise : Devise utilisée pour ce compte.
+	•	Numéro de compte : Numéro de compte ou référence.
+	•	Description : Description détaillée du compte.
+	3.	Gestion des documents :
+	•	Ajouter un document : Permet d’ajouter un document associé au compte.
+	•	Supprimer un document : Permet de retirer un document associé à ce compte.
+	4.	Boutons principaux :
+	•	OK : Valide la création ou la modification du compte et ferme la fenêtre.
+	•	Annuler : Annule l’opération en cours et ferme la fenêtre sans sauvegarder les changements.
+	•	Supprimer : Supprime logiquement un compte bancaire en le marquant comme inactif.
+
+Gestion de la base de données :
+
+	1.	Insertion et modification de comptes :
+	•	Si un nouveau compte est créé, une nouvelle entrée est insérée dans la table account avec toutes les informations requises.
+	•	Si un compte existant est modifié, les informations sont mises à jour dans la base de données pour l’enregistrement correspondant.
+	2.	Suppression logique :
+	•	Lors de la suppression d’un compte, celui-ci est marqué comme supprimé dans la base de données via une mise à jour de son champ is_deleted. Les enregistrements liés, comme les transactions et les documents, sont également marqués comme supprimés.
+	3.	Gestion des documents :
+	•	Les documents associés à chaque compte sont insérés ou supprimés dans la table account_documents, qui stocke les informations sur chaque fichier et leur lien avec le compte.
+
+Gestion des modes (Création et Modification) :
+
+	1.	Mode Création :
+	•	Lorsqu’un nouvel enregistrement est créé, tous les champs sont vides et prêts à recevoir de nouvelles informations. Le bouton “OK” est activé pour valider l’opération.
+	2.	Mode Modification :
+	•	Lorsqu’un compte existant est sélectionné, toutes les informations sont chargées dans les champs correspondants. Le bouton “Supprimer” est également activé pour permettre la suppression logique du compte si nécessaire.
+
+ENGLISH :
+
+The winAccount class is a dialog window used to manage users’ bank accounts. It allows the creation, modification, and soft deletion of bank accounts while handling various associated information such as bank details, account group, account type, balance, and linked documents.
+
+Main Features:
+
+	1.	Creating and Modifying Bank Accounts:
+	•	The user can create a new bank account or modify an existing one. Mandatory fields include the account name, associated bank, account type, and balance. Other fields, such as account group and description, are optional.
+	2.	Soft Deletion of Accounts:
+	•	Deleting an account doesn’t remove it from the database. Instead, it is marked as deleted (soft delete), rendering the account inactive while keeping its data for potential reactivation or auditing purposes.
+	3.	Managing Associated Documents:
+	•	Documents, such as bank statements or contracts, can be linked to each account. These documents are added via a dialog box and stored in a dedicated directory in the application.
+	4.	Group Features:
+	•	Accounts can be assigned to a group, allowing for organizational or reporting purposes. The user can also indicate whether the account’s balance should be considered in the group’s total balance calculation.
+	5.	Advanced Features:
+	•	The form is organized into tabs for better management of the information (Essentials, Documents, Groups, etc.). The user can easily navigate between essential account details and the documents linked to the account.
+
+Window Structure:
+
+	1.	Account Selection ComboBox:
+	•	Allows users to select an account to modify or choose “New Account” to create a new account.
+	2.	Information Fields:
+	•	Account Name: The name of the bank account.
+	•	Account Type: The type of account (e.g., savings, checking).
+	•	Associated Bank: The bank to which the account belongs.
+	•	Balance: The current balance of the account.
+	•	Currency: The currency used for the account.
+	•	Account Number: Account number or reference.
+	•	Description: Detailed description of the account.
+	3.	Document Management:
+	•	Add Document: Allows adding a document linked to the account.
+	•	Remove Document: Allows removing a document linked to the account.
+	4.	Main Buttons:
+	•	OK: Validates the creation or modification of the account and closes the window.
+	•	Cancel: Cancels the ongoing operation and closes the window without saving changes.
+	•	Delete: Soft deletes a bank account by marking it as inactive.
+
+Database Management:
+
+	1.	Inserting and Modifying Accounts:
+	•	When a new account is created, a new entry is inserted into the account table with all required information.
+	•	If an existing account is modified, the information is updated in the database for the corresponding record.
+	2.	Soft Deletion:
+	•	When an account is deleted, it is marked as deleted in the database by updating its is_deleted field. Related records, such as transactions and documents, are also soft deleted.
+	3.	Document Management:
+	•	Documents associated with each account are inserted or removed from the account_documents table, which stores information about each file and its link to the account.
+
+Mode Management (Creation and Modification):
+
+	1.	Creation Mode:
+	•	When creating a new record, all fields are empty and ready for new information. The “OK” button is activated to validate the operation.
+	2.	Modification Mode:
+	•	When an existing account is selected, all its information is loaded into the corresponding fields. The “Delete” button is also activated to allow for the soft deletion of the account if needed.

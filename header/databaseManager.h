@@ -6,15 +6,33 @@
 
 class databaseManager {
 public:
-    static bool setupDatabase();  // Configurer la base de données // Set up the database
-    static QString getDatabasePath();  // Récupérer le chemin de la base de données // Get the path of the database
-    static bool insertDefaultData(QSqlDatabase &db);  // Insérer les données par défaut // Insert default data
+    // Méthode pour configurer la base de données // Method to set up the database
+    static bool setupDatabase();
+
+    // Méthode pour récupérer le chemin de la base de données // Method to get the path of the database
+    static QString getDatabasePath();
+
+    // Méthode pour insérer les données par défaut // Method to insert default data
+    static bool insertDefaultData(QSqlDatabase &db);
+
+    // Méthode pour désactiver une banque (soft delete) // Method to deactivate a bank (soft delete)
+    static bool deactivateBank(int bankId);
+
+    // Méthode pour désactiver tous les comptes associés à une banque désactivée (soft delete) // Method to deactivate all accounts associated with a deactivated bank (soft delete)
+    static bool deactivateAccountsForBank(int bankId);
 
 private:
-    static QString getHashFilePath();  // Récupérer le chemin du fichier de hash // Get the hash file path
-    static QString generateHashFromFile(const QString &filePath);  // Générer un hash à partir d'un fichier // Generate a hash from a file
-    static bool saveHashToFile(const QString &hash);  // Sauvegarder un hash dans un fichier // Save a hash to a file
-    static QString loadHashFromFile();  // Charger un hash à partir d'un fichier // Load a hash from a file
+    // Méthode pour obtenir le chemin du fichier de hash // Method to get the hash file path
+    static QString getHashFilePath();
+
+    // Méthode pour générer un hash à partir d'un fichier // Method to generate a hash from a file
+    static QString generateHashFromFile(const QString &filePath);
+
+    // Méthode pour sauvegarder un hash dans un fichier // Method to save a hash to a file
+    static bool saveHashToFile(const QString &hash);
+
+    // Méthode pour charger un hash à partir d'un fichier // Method to load a hash from a file
+    static QString loadHashFromFile();
 };
 
 #endif // DATABASEMANAGER_H

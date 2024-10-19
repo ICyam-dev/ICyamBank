@@ -1,249 +1,261 @@
 Version Française
 
-1. Table user (Utilisateur)
+	1.	Table user (Utilisateur)
 
-	•	Fonctionnalité : Cette table stocke les informations personnelles de l’utilisateur ainsi que les préférences liées à l’utilisation du logiciel.
-	•	Colonnes :
-	•	id_user : Identifiant unique de l’utilisateur (clé primaire).
-	•	first_name : Prénom de l’utilisateur.
-	•	last_name : Nom de famille de l’utilisateur.
-	•	email : Email de l’utilisateur.
-	•	phone : Numéro de téléphone de l’utilisateur.
-	•	address : Adresse postale de l’utilisateur.
-	•	default_currency : Devise préférée de l’utilisateur.
-	•	language : Langue utilisée dans l’application (par défaut ‘fr’).
-	•	theme : Thème de l’interface de l’application (par défaut ‘clair’).
+		•	Fonctionnalité : Stocke les informations personnelles de l’utilisateur et les préférences liées à l’application.
+		•	Colonnes :
+		•	id_user : Identifiant unique de l’utilisateur (clé primaire).
+		•	first_name : Prénom de l’utilisateur.
+		•	last_name : Nom de famille de l’utilisateur.
+		•	email : Email de l’utilisateur.
+		•	phone : Numéro de téléphone de l’utilisateur.
+		•	address : Adresse postale de l’utilisateur.
+		•	default_currency : Devise préférée de l’utilisateur.
+		•	language : Langue utilisée dans l’application (par défaut ‘fr’).
+		•	theme : Thème de l’interface de l’application (par défaut ‘clair’).
 
-2. Table bank (Banque)
+	2.	Table bank (Banque)
 
-	•	Fonctionnalité : Cette table contient les informations relatives aux banques où sont hébergés les comptes de l’utilisateur.
-	•	Colonnes :
-	•	id_bank : Identifiant unique de la banque (clé primaire).
-	•	bank_name : Nom de la banque.
-	•	address : Adresse de la banque.
-	•	phone : Numéro de téléphone de la banque.
-	•	email : Adresse email de la banque.
-	•	website : Site web de la banque.
-	•	icon_url : Lien vers l’icône représentant la banque.
+		•	Fonctionnalité : Contient les informations sur les banques où les comptes de l’utilisateur sont hébergés.
+		•	Colonnes :
+		•	id_bank : Identifiant unique de la banque (clé primaire).
+		•	bank_name : Nom de la banque.
+		•	address_line1 : Adresse de la banque (ligne 1).
+		•	address_line2 : Adresse de la banque (ligne 2).
+		•	address_line3 : Adresse de la banque (ligne 3).
+		•	phone : Numéro de téléphone de la banque.
+		•	email : Email de la banque.
+		•	website : Site web de la banque.
+		•	icon_url : Lien vers l’icône représentant la banque.
+		•	contact_name : Nom du contact à la banque.
+		•	contact_phone : Téléphone du contact à la banque.
+		•	contact_email : Email du contact à la banque.
+		•	is_deleted : Indicateur pour suppression logique (0 = actif, 1 = supprimé).
 
-3. Table type_account (Types de Comptes)
+	3.	Table type_account (Types de Comptes)
 
-	•	Fonctionnalité : Cette table définit les différents types de comptes disponibles (courant, épargne, prêt, etc.).
-	•	Colonnes :
-	•	id_type : Identifiant unique du type de compte (clé primaire).
-	•	name_type : Nom du type de compte.
-	•	description : Description du type de compte.
+		•	Fonctionnalité : Définit les différents types de comptes disponibles.
+		•	Colonnes :
+		•	id_type : Identifiant unique du type de compte (clé primaire).
+		•	name_type : Nom du type de compte.
+		•	description : Description du type de compte.
 
-4. Table group_account (Groupes de Comptes)
+	4.	Table group_account (Groupes de Comptes)
 
-	•	Fonctionnalité : Cette table permet de regrouper des comptes en catégories définies par l’utilisateur.
-	•	Colonnes :
-	•	id_group : Identifiant unique du groupe de comptes (clé primaire).
-	•	name_group : Nom du groupe de comptes.
-	•	description : Description du groupe.
+		•	Fonctionnalité : Permet de regrouper les comptes en catégories définies par l’utilisateur.
+		•	Colonnes :
+		•	id_group : Identifiant unique du groupe de comptes (clé primaire).
+		•	name_group : Nom du groupe de comptes.
+		•	description : Description du groupe.
 
-5. Table account (Comptes)
+	5.	Table account (Comptes)
 
-	•	Fonctionnalité : Cette table stocke les informations relatives aux comptes bancaires de l’utilisateur.
-	•	Colonnes :
-	•	id_account : Identifiant unique du compte (clé primaire).
-	•	account_number : Numéro du compte.
-	•	id_user : Identifiant de l’utilisateur associé (clé étrangère).
-	•	id_bank : Identifiant de la banque hébergeant le compte (clé étrangère).
-	•	id_type : Type de compte (clé étrangère).
-	•	id_group : Groupe de comptes auquel ce compte appartient (clé étrangère).
-	•	balance : Solde du compte.
-	•	description : Description du compte.
-	•	opening_date : Date d’ouverture du compte.
-	•	active : Statut actif du compte (1 pour actif, 0 pour inactif).
-	•	contact_name : Nom du contact à la banque.
-	•	contact_phone : Numéro de téléphone du contact.
-	•	contact_email : Email du contact à la banque.
-	•	icon_url : Lien vers une icône représentant le compte.
+		•	Fonctionnalité : Stocke les informations sur les comptes bancaires de l’utilisateur.
+		•	Colonnes :
+		•	id_account : Identifiant unique du compte (clé primaire).
+		•	account_number : Numéro de compte.
+		•	id_user : Identifiant de l’utilisateur associé (clé étrangère).
+		•	id_bank : Identifiant de la banque hébergeant le compte (clé étrangère).
+		•	id_type : Identifiant du type de compte (clé étrangère).
+		•	id_group : Identifiant du groupe de comptes (clé étrangère).
+		•	balance : Solde du compte.
+		•	description : Description du compte.
+		•	opening_date : Date d’ouverture du compte.
+		•	is_deleted : Indicateur pour suppression logique (0 = actif, 1 = supprimé).
+		•	contact_name : Nom du contact à la banque.
+		•	contact_phone : Numéro de téléphone du contact.
+		•	contact_email : Email du contact.
+		•	icon_url : Lien vers une icône représentant le compte.
 
-6. Table account_documents (Documents de Comptes)
+	6.	Table account_documents (Documents de Comptes)
 
-	•	Fonctionnalité : Cette table stocke les documents associés à chaque compte (relevés, contrats, etc.).
-	•	Colonnes :
-	•	id_document : Identifiant unique du document (clé primaire).
-	•	id_account : Identifiant du compte associé (clé étrangère).
-	•	document_name : Nom du document.
-	•	document_url : Lien vers le document.
-	•	description : Description du document.
-	•	upload_date : Date d’ajout du document.
+		•	Fonctionnalité : Stocke les documents associés à chaque compte (relevés, contrats, etc.).
+		•	Colonnes :
+		•	id_document : Identifiant unique du document (clé primaire).
+		•	id_account : Identifiant du compte associé (clé étrangère).
+		•	document_name : Nom du document.
+		•	document_url : Lien vers le document.
+		•	description : Description du document.
+		•	upload_date : Date d’ajout du document.
 
-7. Table contact (Contacts)
+	7.	Table contact (Contacts)
 
-	•	Fonctionnalité : Cette table stocke les informations des contacts avec lesquels l’utilisateur effectue des transactions.
-	•	Colonnes :
-	•	id_contact : Identifiant unique du contact (clé primaire).
-	•	name_contact : Nom du contact.
-	•	phone : Numéro de téléphone du contact.
-	•	email : Adresse email du contact.
-	•	address : Adresse du contact.
+		•	Fonctionnalité : Stocke les informations sur les contacts avec lesquels l’utilisateur effectue des transactions.
+		•	Colonnes :
+		•	id_contact : Identifiant unique du contact (clé primaire).
+		•	name_contact : Nom du contact.
+		•	phone : Numéro de téléphone du contact.
+		•	email : Adresse email du contact.
+		•	address : Adresse du contact.
 
-8. Table transactions (Transactions)
+	8.	Table transactions (Transactions)
 
-	•	Fonctionnalité : Cette table stocke les transactions effectuées entre l’utilisateur et ses contacts.
-	•	Colonnes :
-	•	id_transaction : Identifiant unique de la transaction (clé primaire).
-	•	id_account : Identifiant du compte associé (clé étrangère).
-	•	id_contact : Identifiant du contact associé (clé étrangère).
-	•	date_transaction : Date de la transaction.
-	•	amount : Montant de la transaction.
-	•	description : Description de la transaction.
-	•	payment_method : Méthode de paiement utilisée (ex : chèque, carte).
-	•	reference : Référence de la transaction (ex : N° de facture).
+		•	Fonctionnalité : Stocke les transactions effectuées entre l’utilisateur et ses contacts.
+		•	Colonnes :
+		•	id_transaction : Identifiant unique de la transaction (clé primaire).
+		•	id_account : Identifiant du compte associé (clé étrangère).
+		•	id_contact : Identifiant du contact associé (clé étrangère).
+		•	date_transaction : Date de la transaction.
+		•	amount : Montant de la transaction.
+		•	description : Description de la transaction.
+		•	payment_method : Méthode de paiement utilisée (ex : chèque, carte).
+		•	reference : Référence de la transaction (ex : N° de facture).
 
-9. Table charge_benefit_post (Postes de Charge et de Bénéfice)
+	9.	Table charge_benefit_post (Postes de Charge et de Bénéfice)
 
-	•	Fonctionnalité : Cette table stocke les postes de charge et de bénéfice associés aux transactions, organisés en trois catégories principales : Dépenses, Recettes, Hybrides.
-	•	Colonnes :
-	•	id_post : Identifiant unique du poste (clé primaire).
-	•	category : Catégorie principale (Dépenses, Recettes, Hybrides).
-	•	name_post : Nom du poste.
-	•	parent_post : Identifiant du poste parent pour organisation hiérarchique.
+		•	Fonctionnalité : Stocke les postes de charge et de bénéfice associés aux transactions, organisés en trois catégories principales : Dépenses, Recettes, Hybrides.
+		•	Colonnes :
+		•	id_post : Identifiant unique du poste (clé primaire).
+		•	category : Catégorie principale (Dépenses, Recettes, Hybrides).
+		•	name_post : Nom du poste.
+		•	parent_post : Identifiant du poste parent pour organisation hiérarchique.
 
-10. Table transaction_splits (Ventilation des Transactions)
+	10.	Table transaction_splits (Ventilation des Transactions)
 
-	•	Fonctionnalité : Cette table gère la ventilation des transactions sur plusieurs postes de charge ou de bénéfice.
-	•	Colonnes :
-	•	id_split : Identifiant unique de la ventilation (clé primaire).
-	•	id_transaction : Identifiant de la transaction ventilée (clé étrangère).
-	•	id_post : Identifiant du poste de charge ou de bénéfice associé (clé étrangère).
-	•	amount : Montant assigné à ce poste.
-	•	description : Description spécifique de la ventilation.
+		•	Fonctionnalité : Gère la ventilation des transactions sur plusieurs postes de charge ou de bénéfice.
+		•	Colonnes :
+		•	id_split : Identifiant unique de la ventilation (clé primaire).
+		•	id_transaction : Identifiant de la transaction ventilée (clé étrangère).
+		•	id_post : Identifiant du poste de charge ou de bénéfice associé (clé étrangère).
+		•	amount : Montant assigné à ce poste.
+		•	description : Description spécifique de la ventilation.
 
-11. Table projects (Projets)
+	11.	Table projects (Projets)
 
-	•	Fonctionnalité : Cette table stocke les informations sur les projets financiers de l’utilisateur (ex : un mariage ou un achat immobilier).
-	•	Colonnes :
-	•	id_project : Identifiant unique du projet (clé primaire).
-	•	name_project : Nom du projet.
-	•	budget : Montant budgété pour le projet.
-	•	total_spent : Montant total dépensé sur le projet.
+		•	Fonctionnalité : Stocke les informations sur les projets financiers de l’utilisateur.
+		•	Colonnes :
+		•	id_project : Identifiant unique du projet (clé primaire).
+		•	name_project : Nom du projet.
+		•	budget : Montant budgété pour le projet.
+		•	total_spent : Montant total dépensé sur le projet.
 
 English Version (US)
 
-1. Table user
+	1.	Table user
 
-	•	Functionality: This table stores personal information about the user, as well as preferences related to software usage.
-	•	Columns:
-	•	id_user: Unique identifier for the user (primary key).
-	•	first_name: User’s first name.
-	•	last_name: User’s last name.
-	•	email: User’s email address.
-	•	phone: User’s phone number.
-	•	address: User’s postal address.
-	•	default_currency: User’s preferred currency.
-	•	language: Application language (default ‘fr’).
-	•	theme: Application interface theme (default ‘light’).
+		•	Functionality: Stores user personal information and preferences related to the software.
+		•	Columns:
+		•	id_user: Unique identifier for the user (primary key).
+		•	first_name: User’s first name.
+		•	last_name: User’s last name.
+		•	email: User’s email address.
+		•	phone: User’s phone number.
+		•	address: User’s postal address.
+		•	default_currency: User’s preferred currency.
+		•	language: Application language (default ‘fr’).
+		•	theme: Application interface theme (default ‘light’).
 
-2. Table bank
+	2.	Table bank
 
-	•	Functionality: This table contains information about the banks where the user’s accounts or portfolios are held.
-	•	Columns:
-	•	id_bank: Unique identifier for the bank (primary key).
-	•	bank_name: Bank name.
-	•	address: Bank address.
-	•	phone: Bank’s phone number.
-	•	email: Bank’s email address.
-	•	website: Bank’s website.
-	•	icon_url: Link to the icon representing the bank.
+		•	Functionality: Contains information about the banks where the user’s accounts are held.
+		•	Columns:
+		•	id_bank: Unique identifier for the bank (primary key).
+		•	bank_name: Bank name.
+		•	address_line1: Bank address (line 1).
+		•	address_line2: Bank address (line 2).
+		•	address_line3: Bank address (line 3).
+		•	phone: Bank’s phone number.
+		•	email: Bank’s email address.
+		•	website: Bank’s website.
+		•	icon_url: Link to the bank’s icon.
+		•	contact_name: Bank contact name.
+		•	contact_phone: Bank contact phone number.
+		•	contact_email: Bank contact email.
+		•	is_deleted: Soft delete flag (0 = active, 1 = deleted).
 
-3. Table type_account
+	3.	Table type_account
 
-	•	Functionality: This table defines the different available account types (e.g., checking, savings, loan).
-	•	Columns:
-	•	id_type: Unique identifier for the account type (primary key).
-	•	name_type: Account type name.
-	•	description: Account type description.
+		•	Functionality: Defines different types of accounts.
+		•	Columns:
+		•	id_type: Unique identifier for the account type (primary key).
+		•	name_type: Account type name.
+		•	description: Account type description.
 
-4. Table group_account
+	4.	Table group_account
 
-	•	Functionality: This table allows users to group their accounts into custom-defined categories.
-	•	Columns:
-	•	id_group: Unique identifier for the account group (primary key).
-	•	name_group: Account group name.
-	•	description: Account group description.
+		•	Functionality: Allows users to group accounts into custom-defined categories.
+		•	Columns:
+		•	id_group: Unique identifier for the account group (primary key).
+		•	name_group: Account group name.
+		•	description: Account group description.
 
-5. Table account
+	5.	Table account
 
-	•	Functionality: This table stores detailed information about the user’s bank accounts.
-	•	Columns:
-	•	id_account: Unique identifier for the account (primary key).
-	•	account_number: Account number.
-	•	id_user: Associated user ID (foreign key).
-	•	id_bank: Bank ID (foreign key).
-	•	id_type: Account type ID (foreign key).
-	•	id_group: Group ID the account belongs to (foreign key).
-	•	balance: Account balance.
-	•	description: Account description.
-	•	opening_date: Account opening date.
-	•	active: Account active status (1 for active, 0 for inactive).
-	•	contact_name: Bank contact name.
-	•	contact_phone: Bank contact phone number.
-	•	contact_email: Bank contact email.
-	•	icon_url: Link to an icon representing the account.
+		•	Functionality: Stores detailed information about the user’s bank accounts.
+		•	Columns:
+		•	id_account: Unique identifier for the account (primary key).
+		•	account_number: Account number.
+		•	id_user: Associated user ID (foreign key).
+		•	id_bank: Bank ID (foreign key).
+		•	id_type: Account type ID (foreign key).
+		•	id_group: Group ID the account belongs to (foreign key).
+		•	balance: Account balance.
+		•	description: Account description.
+		•	opening_date: Account opening date.
+		•	is_deleted: Soft delete flag (0 = active, 1 = deleted).
+		•	contact_name: Bank contact name.
+		•	contact_phone: Bank contact phone number.
+		•	contact_email: Bank contact email.
+		•	icon_url: Link to an icon representing the account.
 
-6. Table account_documents
+	6.	Table account_documents
 
-	•	Functionality: This table stores documents associated with each account (e.g., statements, contracts).
-	•	Columns:
-	•	id_document: Unique document identifier (primary key).
-	•	id_account: Associated account ID (foreign key).
-	•	document_name: Document name.
-	•	document_url: Link to the document.
-	•	description: Document description.
-	•	upload_date: Document upload date.
+		•	Functionality: Stores documents associated with each account.
+		•	Columns:
+		•	id_document: Unique document identifier (primary key).
+		•	id_account: Associated account ID (foreign key).
+		•	document_name: Document name.
+		•	document_url: Link to the document.
+		•	description: Document description.
+		•	upload_date: Document upload date.
 
-7. Table contact
+	7.	Table contact
 
-	•	Functionality: This table stores information about contacts with whom the user conducts transactions.
-	•	Columns:
-	•	id_contact: Unique contact identifier (primary key).
-	•	name_contact: Contact name.
-	•	phone: Contact phone number.
-	•	email: Contact email address.
-	•	address: Contact postal address.
+		•	Functionality: Stores information about contacts involved in transactions.
+		•	Columns:
+		•	id_contact: Unique contact identifier (primary key).
+		•	name_contact: Contact name.
+		•	phone: Contact phone number.
+		•	email: Contact email address.
+		•	address: Contact postal address.
 
-8. Table transactions
+	8.	Table transactions
 
-	•	Functionality: This table stores transactions between the user and their contacts.
-	•	Columns:
-	•	id_transaction: Unique transaction identifier (primary key).
-	•	id_account: Associated account ID (foreign key).
-	•	id_contact: Associated contact ID (foreign key).
-	•	date_transaction: Transaction date.
-	•	amount: Transaction amount.
-	•	description: Transaction description.
-	•	payment_method: Payment method used (e.g., check, card).
-	•	reference: Transaction reference (e.g., invoice or check number).
+		•	Functionality: Stores transactions between the user and their contacts.
+		•	Columns:
+		•	id_transaction: Unique transaction identifier (primary key).
+		•	id_account: Associated account ID (foreign key).
+		•	id_contact: Associated contact ID (foreign key).
+		•	date_transaction: Transaction date.
+		•	amount: Transaction amount.
+		•	description: Transaction description.
+		•	payment_method: Payment method used.
+		•	reference: Transaction reference.
 
-9. Table charge_benefit_post
+	9.	Table charge_benefit_post
 
-	•	Functionality: This table stores charge and benefit posts associated with transactions, organized into three main categories: Expenses, Revenues, and Hybrids.
-	•	Columns:
-	•	id_post: Unique post identifier (primary key).
-	•	category: Main category (Expenses, Revenues, Hybrids).
-	•	name_post: Post name.
-	•	parent_post: Parent post ID for hierarchical organization.
+		•	Functionality: Stores charge and benefit posts associated with transactions, organized into three main categories: Expenses, Revenues, and Hybrids.
+		•	Columns:
+		•	id_post: Unique post identifier (primary key).
+		•	category: Main category (Expenses, Revenues, Hybrids).
+		•	name_post: Post name.
+		•	parent_post: Parent post ID for hierarchical organization.
+		
+	10.	Table transaction_splits
 
-10. Table transaction_splits
+		•	Functionality: Handles the breakdown (split) of transactions across multiple charge or benefit posts.
+		•	Columns:
+		•	id_split: Unique split identifier (primary key).
+		•	id_transaction: Associated transaction ID (foreign key).
+		•	id_post: Associated charge or benefit post ID (foreign key).
+		•	amount: Amount assigned to this post.
+		•	description: Specific description for the split.
 
-	•	Functionality: This table handles the breakdown (split) of transactions across multiple charge or benefit posts.
-	•	Columns:
-	•	id_split: Unique split identifier (primary key).
-	•	id_transaction: Associated transaction ID (foreign key).
-	•	id_post: Associated charge or benefit post ID (foreign key).
-	•	amount: Amount assigned to this post.
-	•	description: Specific description for the split.
+	11.	Table projects
 
-11. Table projects
-
-	•	Functionality: This table stores information about the user’s financial projects (e.g., a wedding or a property purchase).
-	•	Columns:
-	•	id_project: Unique project identifier (primary key).
-	•	name_project: Project name.
-	•	budget: Budgeted amount for the project.
-	•	total_spent: Total amount spent on the project.
+		•	Functionality: Stores information about the user’s financial projects.
+		•	Columns:
+		•	id_project: Unique project identifier (primary key).
+		•	name_project: Project name.
+		•	budget: Budgeted amount for the project.
+		•	total_spent: Total amount spent on the project.

@@ -1,0 +1,11 @@
+#ifndef VERSION_H
+#define VERSION_H
+
+#define VERSION_STATE "d"
+#define RELEASE_NUMBER "0.0"
+#define RELEASE_YEAR 2024
+#define RELEASE_MONTH 10
+#define BUILD_NUMBER 103
+#define VERSION_STRING "d0.0.2024.10.103"
+
+#endif // VERSION_H
