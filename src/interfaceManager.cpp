@@ -1,40 +1,40 @@
 #include "header/interfaceManager.h"
 #include <QList>
 
-// Constructeur / Constructor
+// **Constructeur de InterfaceManager / Constructor for InterfaceManager**
 InterfaceManager::InterfaceManager(QSplitter* splitter, QComboBox* comboBox, QTreeWidget* treeWidget, QWidget* parent)
     : QObject(parent)
 {
-    // Initialisation de LeftColumnManager / Initializing LeftColumnManager
+    // Initialisation du gestionnaire de la colonne gauche / Initializing the left column manager
     leftColumnManager = new LeftColumnManager(comboBox, treeWidget, this);
 
     // Configuration du QSplitter / Setting up the QSplitter
     setupSplitter(splitter, parent);
 }
 
-// Méthode pour configurer le QSplitter / Method to setup the QSplitter
+// **Configuration du QSplitter / QSplitter Setup**
 void InterfaceManager::setupSplitter(QSplitter* splitter, QWidget* parent)
 {
-    // Ajouter les widgets gauche et droit au splitter
-    // Add the left and right widgets to the splitter
+    // Ajout des widgets au splitter (gauche et droite)
+    // Adding left and right widgets to the splitter
     splitter->addWidget(parent->findChild<QWidget*>("widgetLeft"));
     splitter->addWidget(parent->findChild<QWidget*>("widgetRight"));
 
-    // Définir la taille initiale des deux widgets dans le splitter (20% pour la gauche, 80% pour la droite)
-    // Set the initial size of both widgets in the splitter (20% for left, 80% for right)
+    // Définition de la taille initiale : 20% pour la gauche, 80% pour la droite
+    // Setting initial size: 20% for the left, 80% for the right
     QList<int> sizes;
-    sizes << parent->width() * 0.20 << parent->width() * 0.80;  // Calcul des proportions / Calculating the proportions
+    sizes << parent->width() * 0.20 << parent->width() * 0.80;
     splitter->setSizes(sizes);
 
-    // Limiter les dimensions lors du redimensionnement
-    // Limit the dimensions during resizing
+    // Gestion des limites de redimensionnement pour le widget gauche
+    // Managing resizing limits for the left widget
     connect(splitter, &QSplitter::splitterMoved, parent, [=](int pos, int index) {
-        int totalWidth = parent->width();  // Largeur totale de la fenêtre / Total width of the window
-        int minLeftWidth = totalWidth * 0.15;  // Limite de 15% pour la gauche / 15% limit for the left side
-        int maxLeftWidth = totalWidth * 0.40;  // Limite de 40% pour la gauche / 40% limit for the left side
+        int totalWidth = parent->width();       // Largeur totale de la fenêtre / Total window width
+        int minLeftWidth = totalWidth * 0.15;   // Limite minimale à 15% pour la gauche / 15% minimum limit for the left side
+        int maxLeftWidth = totalWidth * 0.40;   // Limite maximale à 40% pour la gauche / 40% maximum limit for the left side
 
-        // Vérifier et ajuster la largeur du widget gauche pour rester dans les limites
-        // Check and adjust the width of the left widget to stay within the limits
+        // Ajustement de la largeur du widget gauche pour respecter les limites
+        // Adjusting the left widget width to respect the limits
         if (splitter->sizes().at(0) < minLeftWidth) {
             splitter->setSizes({minLeftWidth, totalWidth - minLeftWidth});
         } else if (splitter->sizes().at(0) > maxLeftWidth) {
@@ -43,7 +43,7 @@ void InterfaceManager::setupSplitter(QSplitter* splitter, QWidget* parent)
     });
 }
 
-// Destructeur / Destructor
+// **Destructeur / Destructor**
 InterfaceManager::~InterfaceManager()
 {
     delete leftColumnManager;

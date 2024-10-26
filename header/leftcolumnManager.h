@@ -10,18 +10,18 @@ class LeftColumnManager : public QObject
     Q_OBJECT
 
 public:
-    // Constructeur / Constructor
+    // Constructeur et destructeur / Constructor and destructor
     LeftColumnManager(QComboBox* comboBox, QTreeWidget* treeWidget, QObject* parent = nullptr);
 
 private slots:
-    // Méthode pour gérer les changements de la ComboBox / Method to handle ComboBox changes
+    // Gérer les changements dans la ComboBox / Handle changes in the ComboBox
     void onComboBoxIndexChanged(int index);
 
 private:
-    QComboBox* m_comboBox;    // ComboBox pour le tri / ComboBox for sorting
-    QTreeWidget* m_treeWidget; // TreeView pour afficher les comptes / TreeView for displaying accounts
+    QComboBox* m_comboBox;     // ComboBox pour la gestion du tri / ComboBox for sorting management
+    QTreeWidget* m_treeWidget; // TreeWidget pour afficher les éléments de la colonne gauche / TreeWidget to display left column items
 
-    // Méthode pour initialiser la ComboBox / Method to initialize the ComboBox
+    // Initialiser la ComboBox avec les options / Initialize ComboBox with options
     void initializeComboBox();
 };
 

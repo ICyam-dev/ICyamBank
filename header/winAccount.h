@@ -2,7 +2,10 @@
 #define WINACCOUNT_H
 
 #include <QDialog>
-#include <QCloseEvent>   // Inclusion pour gérer l'événement de fermeture / Inclusion to handle close event
+#include <QSqlQuery>           // Inclusion pour exécuter des requêtes SQL / Include to execute SQL queries
+#include <QPushButton>         // Inclusion pour gérer les boutons / Include to manage buttons
+#include <QComboBox>           // Inclusion pour gérer les ComboBox / Include to manage ComboBoxes
+#include <QCloseEvent>         // Inclusion pour gérer l'événement de fermeture / Include to manage close event
 
 namespace Ui {
 class winAccount;
@@ -13,36 +16,44 @@ class winAccount : public QDialog
     Q_OBJECT
 
 public:
-    explicit winAccount(QWidget *parent = nullptr);
-    ~winAccount();
+    explicit winAccount(QWidget *parent = nullptr);  // Constructeur par défaut / Default constructor
+    ~winAccount();  // Destructeur pour nettoyer les ressources / Destructor to clean up resources
+
+    // Définir le mode de la fenêtre : Création, Modification ou les deux / Define window mode: Creation, Modification, or both
+    void setWindowMode(bool isCreation);
 
 protected:
-    void closeEvent(QCloseEvent *event) override;  // Méthode pour empêcher la fermeture avec les boutons de contrôle / Method to prevent closing with control buttons
+    void closeEvent(QCloseEvent *event) override;  // Empêche la fermeture de la fenêtre avec les boutons de contrôle / Prevents closing with control buttons
 
 private:
-    Ui::winAccount *ui;
+    Ui::winAccount *ui;  // Interface utilisateur / User interface
 
-    // Ajout des méthodes pour charger les ComboBox / Adding methods to load ComboBoxes
+    // **Méthodes pour charger les données dans les ComboBox / Methods to load data into ComboBoxes**
     void loadComboBoxAccount();        // Charger les comptes dans la ComboBox / Load accounts into the ComboBox
     void loadComboBoxAccountBank();    // Charger les banques dans la ComboBox / Load banks into the ComboBox
-    void loadComboBoxAccountGroup();   // Charger les groupes dans la ComboBox / Load account groups into the ComboBox
-    void updateDocumentList();         // Fonction pour mettre à jour la liste des documents / Function to update the document list
-    void saveAccountData();            // Déclaration de la méthode / Declaration of the method
+    void loadComboBoxAccountDevise();  // Charger les devises dans la ComboBox / Load currencies into the ComboBox
+    void loadComboBoxAccountType();    // Charger les types de comptes dans la ComboBox / Load account types into the ComboBox
+    void loadComboBoxAccountGroup();   // Charger les groupes de comptes dans la ComboBox / Load account groups into the ComboBox
 
-    QPushButton *pushBtnAddBank;   // Bouton pour ajouter une banque / Button to add a bank
-    QPushButton *pushBtnAddGroup;  // Bouton pour ajouter un groupe / Button to add a group
-    QPushButton *pushBtnAddDoc;    // Bouton pour ajouter un document / Button to add a document
+    void clearFields();                // Efface tous les champs pour un nouveau compte / Clears all fields for a new account
+    void setEditMode(bool isEdit);     // Basculer entre les modes Création et Modification / Toggle between Creation and Edit modes
 
-    // Identifiant pour le compte courant (utilisé lors de l'ajout de documents, par exemple) / Current account ID
-    int currentAccountId;   // Ajout de l'ID du compte actuel pour les opérations liées aux documents
+    // **Méthodes de sélection dans les ComboBox / ComboBox Selection Methods**
+    void selectComboBoxItemById(QComboBox *comboBox, int id);  // Sélectionner un élément par ID dans une ComboBox / Select item by ID in ComboBox
+
+    int currentAccountId = -1;  // ID du compte actuel pour les modifications / Current account ID for edits
 
 private slots:
-    void on_pushBtnCancel_clicked();   // Slot pour gérer le clic sur le bouton "Annuler" / Slot to handle the "Cancel" button click
-    void on_pushBtnAddBank_clicked();  // Slot pour gérer le clic sur le bouton "Ajouter Banque" / Slot to handle the "Add Bank" button click
-    void on_pushBtnAddGroup_clicked(); // Slot pour gérer le clic sur le bouton "Ajouter Groupe" / Slot to handle the "Add Group" button click
-    void on_pushBtnAddDoc_clicked();   // Slot pour gérer l'ajout de document / Slot to handle document addition
-    void on_pushBtnOk_clicked();       // Slot pour gérer l'enregistrement d'un compte / Slot to handle account saving
-    void on_pushBtnSupp_clicked();     // Slot pour gérer la suppression logique d'un compte / Slot to handle soft delete of an account
+    void handleOkButtonClick();          // Gestion du clic du bouton OK / Handle OK button click
+    void handleCancelButtonClick();      // Gestion du clic du bouton Annuler / Handle Cancel button click
+    void handleDeleteButtonClick();      // Gestion du clic du bouton Supprimer / Handle Delete button click
+    void handleAddBankButtonClick();     // Slot pour ajouter une banque / Slot to add a bank
+    void handleAddGroupButtonClick();    // Slot pour ajouter un groupe / Slot to add a group
+
+    void updateBankComboBoxAfterCreation();  // Mettre à jour la ComboBox Banque après création / Update Bank ComboBox after creation
+    void updateGroupComboBoxAfterCreation(); // Mettre à jour la ComboBox Groupe après création / Update Group ComboBox after creation
+
+    void onComboBoxAccountSelectionChanged(int index);  // Gérer la sélection d'un compte existant / Handle existing account selection
 };
 
 #endif // WINACCOUNT_H

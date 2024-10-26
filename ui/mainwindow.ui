@@ -116,9 +116,13 @@
     <property name="title">
      <string>Ficher</string>
     </property>
+    <addaction name="actionOpenCreateFolder"/>
+    <addaction name="separator"/>
     <addaction name="actionBank"/>
     <addaction name="actionAccount"/>
     <addaction name="actionGroup"/>
+    <addaction name="separator"/>
+    <addaction name="actionCurrentUser"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -160,6 +164,24 @@
    </property>
    <property name="text">
     <string>Les Groupes de compte...</string>
+   </property>
+  </action>
+  <action name="actionOpenCreateFolder">
+   <property name="icon">
+    <iconset resource="../ressources/ressources.qrc">
+     <normaloff>:/menuIcones/openFolder-16.png</normaloff>:/menuIcones/openFolder-16.png</iconset>
+   </property>
+   <property name="text">
+    <string>Ouvrir/Créer un dossier...</string>
+   </property>
+  </action>
+  <action name="actionCurrentUser">
+   <property name="icon">
+    <iconset resource="../ressources/ressources.qrc">
+     <normaloff>:/menuIcones/user-16.png</normaloff>:/menuIcones/user-16.png</iconset>
+   </property>
+   <property name="text">
+    <string>Utilisateur...</string>
    </property>
   </action>
  </widget>

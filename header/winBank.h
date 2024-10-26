@@ -17,26 +17,28 @@ public:
     // Constructeur modifié pour accepter un paramètre "isCreationMode"
     // Modified constructor to accept a "isCreationMode" parameter
     explicit winBank(bool isCreationMode, QWidget *parent = nullptr);
-    ~winBank();
 
-    // Méthode pour verrouiller la comboBox en mode "Nouvelle banque"
-    // Method to lock the comboBox in "New Bank" mode
-    void setNewBankMode();  // Méthode pour forcer le mode "Nouvelle banque" / Method to force "New Bank" mode
+    ~winBank();  // Destructeur pour libérer les ressources / Destructor to release resources
+
+    // Forcer le mode "Nouvelle banque" en verrouillant la comboBox
+    // Force "New Bank" mode by locking the comboBox
+    void setNewBankMode();
 
 protected:
-    void closeEvent(QCloseEvent *event) override;  // Ajout de la méthode closeEvent dans la déclaration / Addition of the closeEvent method in the declaration
+    void closeEvent(QCloseEvent *event) override;  // Empêcher la fermeture avec les boutons de contrôle / Prevent closing with control buttons
 
 private:
-    Ui::winBank *ui;
+    Ui::winBank *ui;  // Interface utilisateur de la fenêtre / User interface of the window
 
-    void loadBankNames(); // Charger les noms de banques dans la comboBox / Load bank names into the comboBox
-    void toggleEditMode(bool isNew); // Basculer entre mode création et modification / Toggle between creation and edit mode
-    void clearBankFields(); // Méthode pour vider les champs de la banque / Method to clear bank fields
+    // **Méthodes pour la gestion des banques / Methods for bank management**
+    void loadBankNames();             // Charger les noms de banques dans la comboBox / Load bank names into the comboBox
+    void toggleEditMode(bool isNew);   // Basculer entre le mode création et modification / Toggle between creation and edit mode
+    void clearBankFields();            // Vider les champs de saisie de la banque / Clear bank input fields
 
 private slots:
-    void onComboBoxSelectionChanged(int index); // Méthode pour gérer le changement de sélection dans la comboBox / Method to handle comboBox selection change
-    void handleBankOperation(); // Gérer l'opération de création ou de modification de la banque / Handle bank creation or modification operation
-    void handleBankDeletion(); // Gérer la suppression d'une banque / Handle bank deletion
+    void onComboBoxSelectionChanged(int index);  // Gérer le changement de sélection dans la comboBox / Handle comboBox selection change
+    void handleBankOperation();                  // Gérer l'opération de création ou modification de banque / Handle bank creation or modification operation
+    void handleBankDeletion();                   // Gérer la suppression d'une banque / Handle bank deletion
 };
 
 #endif // WINBANK_H

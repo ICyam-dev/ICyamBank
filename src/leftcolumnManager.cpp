@@ -2,6 +2,7 @@
 #include <QTranslator>
 #include <QApplication>
 
+// **Constructeur de LeftColumnManager / Constructor for LeftColumnManager**
 LeftColumnManager::LeftColumnManager(QComboBox* comboBoxSortAcount, QTreeWidget* treeWidgetAccount, QObject* parent)
     : QObject(parent), m_comboBox(comboBoxSortAcount), m_treeWidget(treeWidgetAccount)
 {
@@ -21,6 +22,7 @@ LeftColumnManager::LeftColumnManager(QComboBox* comboBoxSortAcount, QTreeWidget*
             this, &LeftColumnManager::onComboBoxIndexChanged);
 }
 
+// **Initialisation de la ComboBox / ComboBox Initialization**
 void LeftColumnManager::initializeComboBox()
 {
     // Ajout des éléments traduisibles à la ComboBox
@@ -34,6 +36,7 @@ void LeftColumnManager::initializeComboBox()
     m_comboBox->setCurrentIndex(0);
 }
 
+// **Gestion des changements d'index de la ComboBox / Handle ComboBox Index Changes**
 void LeftColumnManager::onComboBoxIndexChanged(int index)
 {
     // Gestion des changements en fonction de l'option sélectionnée
@@ -42,16 +45,17 @@ void LeftColumnManager::onComboBoxIndexChanged(int index)
     case 0:
         // Tri par groupe de compte sélectionné
         // Sorting by account group selected
-        // Ajouter la logique plus tard
-        // Add the logic later
+        // Ajouter la logique plus tard / Add logic later
         break;
     case 1:
         // Tri par type de compte sélectionné
         // Sorting by account type selected
+        // Ajouter la logique plus tard / Add logic later
         break;
     case 2:
         // Tri par banque sélectionné
         // Sorting by bank selected
+        // Ajouter la logique plus tard / Add logic later
         break;
     default:
         break;

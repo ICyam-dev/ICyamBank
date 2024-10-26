@@ -1,12 +1,15 @@
 #include "header/mainwindow.h"
+#include "header/winCurrentUser.h"
 #include "ui_mainwindow.h"
-#include "header/databaseManager.h"  // Inclusion du gestionnaire de base de données / Including the database manager
-#include "header/interfaceManager.h"  // Inclusion de la classe InterfaceManager / Including the InterfaceManager class
-#include "header/winabout.h"  // Inclusion de la fenêtre WinAbout / Including the WinAbout window
-#include "header/winAccount.h"  // Inclusion du fichier d'en-tête pour winAccount / Include header for winAccount
-#include "header/winGroup.h"  // Inclusion pour winGroup
+#include "header/interfaceManager.h"  // Inclusion de la classe InterfaceManager / Including InterfaceManager class
+#include "header/winAbout.h"          // Inclusion de la fenêtre WinAbout / Including WinAbout window
+#include "header/winAccount.h"        // Inclusion de winAccount / Including winAccount
+#include "header/winGroup.h"          // Inclusion de winGroup / Including winGroup
+#include "header/winUser.h"           // Inclure winUser / Including winUser
+#include "header/winBank.h"           // Inclure winBank / Including winBank
 #include <QSqlDatabase>
 #include <QDebug>
+#include <QTimer>  // Inclure QTimer pour gérer le délai d'ouverture / Including QTimer to manage open delay
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -14,73 +17,107 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    // Afficher les pilotes disponibles / Display available SQL drivers
+    // Afficher les pilotes disponibles pour confirmation
+    // Show available drivers for confirmation
     qDebug() << "Drivers disponibles:" << QSqlDatabase::drivers();
-
-    // Vérifier si la base de données est prête et afficher le chemin dans la barre de statut
-    // Check if the database is ready and display the path in the status bar
-    QString dbPath = databaseManager::getDatabasePath();  // Récupérer le chemin de la base de données / Get the database path
-
-    if (databaseManager::setupDatabase()) {
-        // Afficher le chemin d'accès à gauche de la barre de statut avec traduction
-        // Display the database path on the left of the status bar with translation
-        statusBar()->showMessage(tr("Base de données: ") + dbPath);
-    } else {
-        // Afficher un message d'erreur si la base de données ne peut pas être connectée
-        // Show an error message if the database cannot be connected
-        statusBar()->showMessage(tr("Échec de la connexion à la base de données"), 5000);
-    }
 
     // Créer un QSplitter pour diviser la zone de gauche et de droite
     // Create a QSplitter to divide the left and right areas
     QSplitter *splitter = new QSplitter(Qt::Horizontal, this);
-
-    // Initialiser InterfaceManager pour gérer le splitter et la colonne gauche
-    // Initialize InterfaceManager to manage the splitter and the left column
     InterfaceManager* interfaceManager = new InterfaceManager(splitter, ui->comboBoxSortAcount, ui->treeWidgetAccount, this);
-
-    // Ajouter le QSplitter dans le layout principal
-    // Add the QSplitter to the main layout
     ui->horizontalLayout->addWidget(splitter);
+
+    // Ouvrir la fenêtre utilisateur après l'affichage de MainWindow
+    // Open the user window after MainWindow display
+    QTimer::singleShot(100, this, &MainWindow::openUserDialog);
+
+    // Connexions explicites pour chaque action
+    // Explicit connections for each action
+    connect(ui->actionOpenCreateFolder, &QAction::triggered, this, &MainWindow::openCreateFolder);
+    connect(ui->actionAbout, &QAction::triggered, this, &MainWindow::showAbout);
+    connect(ui->actionBank, &QAction::triggered, this, &MainWindow::openBankWindow);
+    connect(ui->actionAccount, &QAction::triggered, this, &MainWindow::openAccountWindow);
+    connect(ui->actionGroup, &QAction::triggered, this, &MainWindow::openGroupWindow);
+    connect(ui->actionCurrentUser, &QAction::triggered, this, &MainWindow::openCurrentUser);
 }
 
-// Slot pour gérer l'ouverture de la fenêtre "À propos" / Slot to handle the opening of the "About" window
-void MainWindow::on_actionAbout_triggered()
+// Méthode pour activer ou désactiver certaines actions (menu, boutons, etc.)
+// Method to enable or disable certain actions (menu, buttons, etc.)
+void MainWindow::updateActions(bool enabled)
 {
-    // Créer et afficher la fenêtre WinAbout / Create and show the WinAbout window
+    ui->actionBank->setEnabled(enabled);
+    ui->actionAccount->setEnabled(enabled);
+    ui->actionGroup->setEnabled(enabled);
+    ui->actionCurrentUser->setEnabled(enabled);
+}
+
+// Ouverture automatique de la fenêtre utilisateur après affichage
+// Automatic opening of the user window after display
+void MainWindow::openUserDialog()
+{
+    winUser userDialog(this);
+    userDialog.exec();  // Affiche la fenêtre utilisateur en mode modal / Show user window in modal mode
+}
+
+// Slot pour l'ouverture manuelle de la fenêtre winUser
+// Slot for manually opening the winUser window
+void MainWindow::openCreateFolder()
+{
+    winUser userDialog(this);
+    userDialog.exec();
+}
+
+// Afficher la fenêtre "À propos" en mode modal
+// Display the "About" window in modal mode
+void MainWindow::showAbout()
+{
     WinAbout aboutDialog(this);
-    aboutDialog.setModal(true);  // Rendre la fenêtre modale / Make the window modal
-    aboutDialog.exec();  // Ouvrir la fenêtre en mode dialogue / Open the window as a dialog
+    aboutDialog.setModal(true);
+    aboutDialog.exec();
 }
 
-void MainWindow::on_actionBank_triggered()
+// Ouverture de la fenêtre bancaire en mode hybride
+// Open the banking window in hybrid mode
+void MainWindow::openBankWindow()
 {
-    // Créer une nouvelle fenêtre pour gérer les informations bancaires
-    winBank *bankWindow = new winBank(this);  // Créer une instance de la fenêtre
-
-    // Ajout d'un filtre pour n'afficher que les banques actives
-    // The winBank window already filters for active banks using is_active = 1
-    bankWindow->exec();  // Ouvrir la fenêtre en mode modal
+    winBank *bankWindow = new winBank(false, this);  // Mode hybride : création/modification/suppression / Hybrid mode: creation/modification/deletion
+    bankWindow->exec();  // Affiche la fenêtre en mode modal / Display the window in modal mode
 }
 
-void MainWindow::on_actionAccount_triggered()
+// Ouverture de la fenêtre de gestion des comptes
+// Open the account management window
+void MainWindow::openAccountWindow()
 {
-    // Créer et afficher la fenêtre winAccount / Create and display winAccount window
     winAccount *accountWindow = new winAccount(this);
-    accountWindow->exec();  // Ouvrir la fenêtre en mode modal / Open the window in modal mode
+    accountWindow->exec();
 }
 
-void MainWindow::on_actionGroup_triggered()
+// Ouverture de la fenêtre de gestion des groupes
+// Open the group management window
+void MainWindow::openGroupWindow()
 {
-    // Ouvrir la fenêtre winGroup en mode Création/Modification
-    winGroup groupDialog(this);  // Création de l'instance de winGroup
-    groupDialog.setWindowModality(Qt::ApplicationModal);  // Ouvrir la fenêtre en mode modal
+    // Création de la fenêtre winGroup en mode hybride (création/modification/suppression)
+    // Create winGroup window in hybrid mode (creation/modification/deletion)
+    winGroup *groupWindow = new winGroup(false, this);
 
-    if (groupDialog.exec() == QDialog::Accepted) {
-        // Logique supplémentaire après la fermeture de la fenêtre, si nécessaire
-    }
+    // Afficher la fenêtre en mode modal
+    // Display the window in modal mode
+    groupWindow->exec();
+
+    // Nettoyer après fermeture de la fenêtre
+    // Clean up after closing the window
+    delete groupWindow;
 }
 
+// Ouverture de la fenêtre des informations utilisateur en cours
+// Open the current user information window
+void MainWindow::openCurrentUser()
+{
+    winCurrentUser currentUserDialog(this);
+    currentUserDialog.exec();
+}
+
+// Destructeur / Destructor
 MainWindow::~MainWindow()
 {
     delete ui;

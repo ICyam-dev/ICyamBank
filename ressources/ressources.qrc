@@ -12,10 +12,15 @@
         <file>group_64.png</file>
         <file>doc_128.png</file>
         <file>doc_64.png</file>
+        <file>account_64.png</file>
+        <file>openFolder-64.png</file>
+        <file>user-64.png</file>
     </qresource>
     <qresource prefix="/menuIcones">
         <file>bank_16.png</file>
         <file>account_16.png</file>
         <file>group_16.png</file>
+        <file>openFolder-16.png</file>
+        <file>user-16.png</file>
     </qresource>
 </RCC>

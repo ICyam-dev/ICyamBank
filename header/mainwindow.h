@@ -2,29 +2,40 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "header/winabout.h"  // Inclusion de la fenêtre WinAbout / Including the WinAbout window
-#include "header/winBank.h"   // Inclusion de la classe WinBank / Including the WinBank class
 
-QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
-QT_END_NAMESPACE
+namespace Ui {
+class MainWindow;
+}
 
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = nullptr);  // Constructeur de MainWindow / Constructor for MainWindow
-    ~MainWindow();  // Destructeur de MainWindow / Destructor for MainWindow
+    explicit MainWindow(QWidget *parent = nullptr);
+    ~MainWindow();
+
+    // Méthode pour activer ou désactiver certaines actions (menu, boutons, etc.)
+    // Method to enable or disable certain actions (menu, buttons, etc.)
+    void updateActions(bool enabled);
+
+protected:
+    // Méthode pour ouvrir la boîte de dialogue utilisateur
+    // Method to open the user dialog
+    void openUserDialog();
 
 private slots:
-    void on_actionAbout_triggered();  // Slot pour gérer l'ouverture de la fenêtre "À propos" / Slot to handle the opening of the "About" window
-    void on_actionBank_triggered();   // Slot pour gérer l'action du menu 'Bank' / Slot to handle the 'Bank' menu action
-    void on_actionAccount_triggered();  // Slot pour gérer l'action du menu 'Account' / Slot to handle the 'Account' menu action
-    void on_actionGroup_triggered();  // Slot pour gérer l'action du menu 'Group' / Slot to handle the 'Group' menu action
+    // Slots pour gérer l'ouverture des différentes fenêtres de l'application
+    // Slots to handle opening various application windows
+    void openCreateFolder();      // Ouvrir manuellement winUser / Manually open winUser
+    void showAbout();             // Afficher la fenêtre À propos / Display the About window
+    void openBankWindow();        // Ouvrir la fenêtre bancaire / Open the bank management window
+    void openAccountWindow();     // Ouvrir la fenêtre de gestion des comptes / Open the account management window
+    void openGroupWindow();       // Ouvrir la fenêtre de gestion des groupes / Open the group management window
+    void openCurrentUser();       // Ouvrir winCurrentUser / Open winCurrentUser
 
 private:
-    Ui::MainWindow *ui;  // Pointeur vers l'interface utilisateur / Pointer to the user interface
+    Ui::MainWindow *ui;           // Interface utilisateur / User interface
 };
 
 #endif // MAINWINDOW_H

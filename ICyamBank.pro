@@ -13,8 +13,10 @@ SOURCES += \
     src/winAbout.cpp \
     src/winAccount.cpp \
     src/winBank.cpp \
+    src/winCurrentUser.cpp \
     src/winDoc.cpp \
-    src/winGroup.cpp
+    src/winGroup.cpp \
+    src/winUser.cpp
 
 HEADERS += \
     header/interfaceManager.h \
@@ -25,15 +27,19 @@ HEADERS += \
     header/winAbout.h \
     header/winAccount.h \
     header/winBank.h \
+    header/winCurrentUser.h \
     header/winDoc.h \
-    header/winGroup.h
+    header/winGroup.h \
+    header/winUser.h
 
 FORMS += \
     ui/mainwindow.ui \
     ui/winAccount.ui \
     ui/winBank.ui \
+    ui/winCurrentUser.ui \
     ui/winDoc.ui \
     ui/winGroup.ui \
+    ui/winUser.ui \
     ui/winabout.ui
 
 TRANSLATIONS += \

@@ -12,12 +12,16 @@ class InterfaceManager : public QObject
     Q_OBJECT
 
 public:
+    // Constructeur et destructeur / Constructor and destructor
     InterfaceManager(QSplitter* splitter, QComboBox* comboBox, QTreeWidget* treeWidget, QWidget* parent = nullptr);
     ~InterfaceManager();
 
 private:
-    LeftColumnManager* leftColumnManager;  // Pointeur vers le gestionnaire de la colonne gauche / Pointer to the left column manager
-    void setupSplitter(QSplitter* splitter, QWidget* parent);  // Configure le QSplitter avec les limites et les proportions / Set up the QSplitter with limits and proportions
+    // Gestionnaire pour la colonne gauche de l'interface / Manager for the left column of the interface
+    LeftColumnManager* leftColumnManager;
+
+    // Configurer le QSplitter pour la mise en page de l'interface / Set up QSplitter for interface layout
+    void setupSplitter(QSplitter* splitter, QWidget* parent);
 };
 
 #endif // INTERFACEMANAGER_H

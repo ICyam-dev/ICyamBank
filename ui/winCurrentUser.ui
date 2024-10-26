@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>winCurrentUser</class>
+ <widget class="QDialog" name="winCurrentUser">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>332</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>Arial</family>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>Utilisateur en cours</string>
+  </property>
+  <widget class="QLabel" name="labelPicture">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>64</width>
+     <height>64</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="../ressources/ressources.qrc">:/winPictures/user-64.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelTitle">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>10</y>
+     <width>291</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt; font-weight:700;&quot;&gt;Données Utilisateur&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Ce formulaire pour vous saisir les données &lt;br/&gt;utlisateur présent sur vos rapports et vos états.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
+   </property>
+  </widget>
+  <widget class="Line" name="line">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>80</y>
+     <width>371</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Orientation::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelName">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>100</y>
+     <width>101</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Nom :</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelMail">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>190</y>
+     <width>101</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Courriel :</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelAdress">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>220</y>
+     <width>101</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Adresse :</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelPhone">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>160</y>
+     <width>101</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Téléphone :</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelFirstName">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>130</y>
+     <width>101</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Prénom :</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEditPhone">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>158</y>
+     <width>271</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEditMail">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>190</y>
+     <width>271</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEditAdr1">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>220</y>
+     <width>271</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEditFirstname">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>130</y>
+     <width>271</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEditName">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>100</y>
+     <width>271</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEditAdr2">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>240</y>
+     <width>271</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEditAdr3">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>260</y>
+     <width>271</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushBtnOk">
+   <property name="geometry">
+    <rect>
+     <x>280</x>
+     <y>290</y>
+     <width>100</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Ok</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushBtnCancel">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>290</y>
+     <width>100</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Annuler</string>
+   </property>
+  </widget>
+ </widget>
+ <tabstops>
+    <tabstop>lineEditName</tabstop>
+    <tabstop>lineEditFirstname</tabstop>
+    <tabstop>lineEditPhone</tabstop>
+    <tabstop>lineEditMail</tabstop>
+    <tabstop>lineEditAdr1</tabstop>
+    <tabstop>lineEditAdr2</tabstop>
+    <tabstop>lineEditAdr3</tabstop>
+    <tabstop>pushBtnCancel</tabstop>
+    <tabstop>pushBtnOk</tabstop>
+</tabstops>
+ <resources>
+  <include location="../ressources/ressources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

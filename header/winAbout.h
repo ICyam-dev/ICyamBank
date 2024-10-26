@@ -12,14 +12,14 @@ class WinAbout : public QDialog
     Q_OBJECT
 
 public:
-    // Constructeur de la fenêtre WinAbout / Constructor for WinAbout window
+    // Constructeur : initialise la fenêtre À propos / Constructor: initializes the About window
     explicit WinAbout(QWidget *parent = nullptr);
 
-    // Destructeur de la fenêtre WinAbout / Destructor for WinAbout window
+    // Destructeur : nettoie les ressources de la fenêtre / Destructor: cleans up window resources
     ~WinAbout();
 
 private:
-    Ui::WinAbout *ui;  // Interface utilisateur / User interface
+    Ui::WinAbout *ui;  // Interface utilisateur pour WinAbout / User interface for WinAbout
 };
 
 #endif // WINABOUT_H
