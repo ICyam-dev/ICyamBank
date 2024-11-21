@@ -17,7 +17,7 @@
 
 // Numéro de build pour suivi des modifications
 // Build number for tracking incremental updates
-#define BUILD_NUMBER 437
+#define BUILD_NUMBER 438
 
 // Chaîne de version complète / Complete version string
 // Format: état.version_majeure.version_mineure.année_mois.build
