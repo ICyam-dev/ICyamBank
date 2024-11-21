@@ -1,0 +1,75 @@
+Documentation Technique et Fonctionnelle
+
+Partie 1 : Documentation en Français
+
+Introduction
+
+La classe winBank représente la fenêtre de gestion des informations bancaires dans l’application ICyamBank. Cette fenêtre permet de créer, modifier, et supprimer des informations bancaires de manière simplifiée et conviviale. Elle est conçue pour assurer une gestion intuitive des données bancaires et pour offrir des fonctionnalités de création, de modification et de suppression logique (soft delete) des banques.
+
+Fonctionnalités de la Classe
+
+	1.	Configuration de la Fenêtre
+	•	La fenêtre est configurée pour être de taille fixe et non redimensionnable, offrant une présentation stable des données.
+	•	Le bouton “Supprimer” est masqué par défaut et n’est visible que lorsque l’utilisateur passe en mode édition pour une banque existante.
+	2.	Chargement des Noms des Banques
+	•	La méthode loadBankNames permet de charger dans une ComboBox les noms de toutes les banques actives (non supprimées) de la base de données.
+	•	Une option de création (“Nouvelle banque…”) est ajoutée par défaut pour faciliter la création de nouvelles banques.
+	3.	Mode Création et Mode Modification
+	•	La méthode setNewBankMode force la fenêtre à passer en mode “Création de banque” en verrouillant la ComboBox sur “Nouvelle banque…”.
+	•	La méthode toggleEditMode permet de basculer entre le mode création et le mode modification en modifiant l’affichage des boutons et des champs en conséquence.
+	4.	Gestion de l’Insertion et de la Modification des Banques
+	•	La méthode handleBankOperation gère l’insertion ou la modification d’une banque selon le mode actuel.
+	•	En mode création, elle insère une nouvelle banque avec les informations saisies par l’utilisateur.
+	•	En mode édition, elle met à jour les informations de la banque sélectionnée dans la ComboBox.
+	5.	Suppression Logique de la Banque
+	•	La méthode handleBankDeletion marque une banque comme “supprimée” en mettant à jour son champ is_deleted dans la base de données. Cette suppression logique empêche l’affichage de la banque sans réellement la supprimer physiquement.
+	6.	Effacement des Champs et Gestion des Événements
+	•	La méthode clearBankFields efface tous les champs de saisie pour permettre la création d’une nouvelle banque sans résidu d’informations.
+	•	La méthode closeEvent empêche la fermeture directe de la fenêtre par l’utilisateur en interceptant l’événement de fermeture, garantissant ainsi un flux de travail contrôlé.
+
+Résumé des Méthodes Principales
+
+	•	loadBankNames : Charge la liste des banques actives dans la ComboBox.
+	•	setNewBankMode : Active le mode “Création de nouvelle banque”.
+	•	toggleEditMode : Basculer entre les modes création et modification.
+	•	handleBankOperation : Insère ou met à jour une banque dans la base de données.
+	•	handleBankDeletion : Supprime logiquement une banque en la marquant comme inactive.
+	•	clearBankFields : Efface tous les champs pour une nouvelle entrée.
+	•	closeEvent : Empêche la fermeture de la fenêtre avec le bouton système.
+
+Partie 2 : Documentation en Anglais
+
+Introduction
+
+The winBank class represents the bank information management window in the ICyamBank application. This window allows for the creation, modification, and deletion of bank information in a simplified and user-friendly way. It is designed to facilitate intuitive bank data management and to offer functionalities for creating, editing, and logically deleting (soft delete) banks.
+
+Class Functionalities
+
+	1.	Window Configuration
+	•	The window is configured to have a fixed, non-resizable size, ensuring a stable data presentation.
+	•	The “Delete” button is hidden by default and only becomes visible when the user enters edit mode for an existing bank.
+	2.	Loading Bank Names
+	•	The loadBankNames method loads the names of all active (non-deleted) banks from the database into a ComboBox.
+	•	A creation option (“New Bank…”) is added by default to facilitate the creation of new banks.
+	3.	Creation and Edit Modes
+	•	The setNewBankMode method forces the window to enter “New Bank” creation mode by locking the ComboBox to the “New Bank…” option.
+	•	The toggleEditMode method allows switching between creation and edit modes by modifying button and field displays accordingly.
+	4.	Bank Insertion and Modification Management
+	•	The handleBankOperation method manages the insertion or modification of a bank depending on the current mode.
+	•	In creation mode, it inserts a new bank with the information entered by the user.
+	•	In edit mode, it updates the information of the selected bank in the ComboBox.
+	5.	Logical Deletion of Bank
+	•	The handleBankDeletion method marks a bank as “deleted” by updating its is_deleted field in the database. This logical deletion prevents the bank from displaying without actually removing it physically.
+	6.	Clearing Fields and Event Management
+	•	The clearBankFields method clears all input fields to allow for new bank creation without leftover information.
+	•	The closeEvent method prevents the direct closure of the window by intercepting the close event, thus ensuring a controlled workflow.
+
+Summary of Main Methods
+
+	•	loadBankNames: Loads the list of active banks into the ComboBox.
+	•	setNewBankMode: Activates “New Bank” creation mode.
+	•	toggleEditMode: Toggles between creation and edit modes.
+	•	handleBankOperation: Inserts or updates a bank in the database.
+	•	handleBankDeletion: Logically deletes a bank by marking it inactive.
+	•	clearBankFields: Clears all fields for new entry.
+	•	closeEvent: Prevents window closure with the system close button.

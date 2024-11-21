@@ -1,0 +1,83 @@
+Documentation Technique et Fonctionnelle
+
+Partie 1 : Documentation en Français
+
+Introduction
+
+Ce fichier databaseManager.cpp contient les méthodes de gestion de la base de données pour l’application ICyamBank. Il comprend des méthodes de configuration, de gestion de la connexion, de hashage des fichiers, ainsi que des fonctions pour insérer des données par défaut. Ce fichier est essentiel pour l’infrastructure de la base de données, assurant que les opérations telles que l’initialisation, la gestion des dossiers, et la manipulation des données des comptes bancaires soient effectuées de manière efficace et sécurisée.
+
+1. Gestion du dossier en cours
+
+	•	Méthodes getCurrentFolderId et setCurrentFolderId
+Ces méthodes statiques permettent de définir et de récupérer l’ID du dossier utilisateur actuellement sélectionné. La variable currentFolderId est une variable statique, initialisée à -1 pour indiquer qu’aucun dossier n’est sélectionné.
+
+2. Gestion des chemins de fichiers et documents
+
+	•	getDatabasePath et getHashFilePath
+Ces méthodes fournissent les chemins d’accès aux fichiers pour la base de données et le fichier de hash. Elles utilisent le chemin par défaut du répertoire Documents et créent un dossier ICyamBank si nécessaire.
+
+3. Fonctions de hashage
+
+	•	generateHashFromFile, saveHashToFile, et loadHashFromFile
+Ces méthodes sont utilisées pour générer un hash SHA-256 du fichier de base de données et sauvegarder ou charger ce hash. Cela permet de vérifier l’intégrité de la base de données en comparant les valeurs de hash.
+
+4. Configuration de la base de données
+
+	•	setupDatabase
+Cette méthode initialise et configure la base de données SQLite. Elle crée le dossier de la base de données, copie une base de données vierge si elle n’existe pas déjà, et insère des données de compte et utilisateur par défaut si la base de données est nouvellement créée.
+
+5. Désactivation et suppression
+
+	•	deactivateBank et deactivateAccountsForBank
+Ces méthodes permettent de désactiver une banque spécifique et tous ses comptes associés. Elles mettent à jour les champs is_active des enregistrements pour une suppression logique.
+
+6. Insertion de données par défaut
+
+	•	insertDefaultAccountTypes et insertDefaultUser
+Ces méthodes insèrent des types de comptes et un utilisateur par défaut dans la base de données. Elles sont utiles lors de la première initialisation de la base de données pour fournir des valeurs de départ.
+
+7. Récupération des derniers IDs insérés
+
+	•	getLastInsertedBankId et getLastInsertedGroupId
+Ces méthodes renvoient respectivement les derniers IDs de la banque et des groupes de comptes, afin de simplifier la gestion des opérations basées sur les enregistrements les plus récents.
+
+Partie 2 : Documentation en Anglais
+
+Introduction
+
+This databaseManager.cpp file contains database management methods for the ICyamBank application. It includes configuration, connection handling, file hashing functions, and methods for inserting default data. This file is critical for the database infrastructure, ensuring that operations such as initialization, folder management, and data handling for bank accounts are carried out efficiently and securely.
+
+1. Current Folder Management
+
+	•	Methods getCurrentFolderId and setCurrentFolderId
+These static methods allow setting and retrieving the ID of the currently selected user folder. The currentFolderId variable is a static variable, initialized to -1 to indicate no folder is selected.
+
+2. File Paths and Document Management
+
+	•	getDatabasePath and getHashFilePath
+These methods provide the file paths for the database and hash file. They use the default path of the Documents directory and create an ICyamBank folder if necessary.
+
+3. Hashing Functions
+
+	•	generateHashFromFile, saveHashToFile, and loadHashFromFile
+These methods are used to generate a SHA-256 hash of the database file and save or load this hash. This allows verifying the integrity of the database by comparing hash values.
+
+4. Database Setup
+
+	•	setupDatabase
+This method initializes and configures the SQLite database. It creates the database folder, copies a blank database if it doesn’t already exist, and inserts default account and user data if the database is newly created.
+
+5. Soft Delete and Deactivation
+
+	•	deactivateBank and deactivateAccountsForBank
+These methods allow deactivating a specific bank and all associated accounts. They update the is_active fields for logical deletion.
+
+6. Inserting Default Data
+
+	•	insertDefaultAccountTypes and insertDefaultUser
+These methods insert default account types and a default user into the database. They are useful during the initial database setup to provide starting values.
+
+7. Retrieving Last Inserted IDs
+
+	•	getLastInsertedBankId and getLastInsertedGroupId
+These methods return the most recent IDs for banks and account groups, respectively, simplifying management of operations based on the most recent records.

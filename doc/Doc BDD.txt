@@ -1,0 +1,93 @@
+Documentation Technique et Fonctionnelle des Tables de la Base de Données
+
+Partie 1 : Documentation en Français
+
+Introduction
+
+La structure de la base de données est conçue pour répondre aux besoins d’une application de gestion financière utilisateur. Les tables sont interconnectées par des clés étrangères, permettant une organisation logique des utilisateurs, des comptes, des transactions et des projets. Les colonnes spécifiques permettent la gestion des relations utilisateurs-banque, les informations de contact, et le suivi détaillé des transactions et des ventilations. Les tables prennent en charge la suppression logique avec la colonne is_deleted, facilitant la gestion des données sans les effacer définitivement.
+
+Tables de la Base de Données
+
+	1.	Table user
+	•	Contient les informations principales de l’utilisateur telles que le nom, l’adresse et les préférences comme la devise par défaut, le thème, et la langue.
+	•	Fournit une structure de dossier pour organiser les données de l’utilisateur.
+	2.	Table bank
+	•	Stocke les informations des banques associées à l’utilisateur, incluant les coordonnées et les informations de contact.
+	•	Possède une clé étrangère vers la table user, permettant de relier chaque banque à un utilisateur spécifique.
+	3.	Table type_account
+	•	Définit les différents types de comptes bancaires, comme les comptes d’épargne, de dépôt, etc.
+	•	La table est principalement référencée par la table account pour spécifier le type de chaque compte.
+	4.	Table group_account
+	•	Utilisée pour organiser les comptes en groupes, permettant une meilleure gestion et un suivi plus précis des finances.
+	•	Chaque groupe est lié à un utilisateur spécifique via une clé étrangère vers la table user.
+	5.	Table account
+	•	Gère les comptes bancaires de l’utilisateur, incluant le nom, le numéro de compte, le solde, et les informations de contact.
+	•	Possède des clés étrangères vers les tables user, bank, type_account et group_account, facilitant l’organisation et la catégorisation des comptes.
+	6.	Table account_documents
+	•	Permet de stocker des documents relatifs aux comptes, tels que des relevés bancaires ou des contrats.
+	•	Chaque document est associé à un compte spécifique via une clé étrangère vers la table account.
+	7.	Table contact
+	•	Conserve les informations des contacts, comme les prestataires ou partenaires financiers de l’utilisateur.
+	•	Les contacts sont associés à un utilisateur spécifique via une clé étrangère.
+	8.	Table projects
+	•	Gère les projets financiers de l’utilisateur, permettant de définir un budget et de suivre les dépenses.
+	•	Chaque projet est associé à un utilisateur via une clé étrangère vers la table user.
+	9.	Table transactions
+	•	Contient les transactions financières effectuées par l’utilisateur, avec des informations comme la date, le montant, et le moyen de paiement.
+	•	Possède des liens avec les utilisateurs et les contacts.
+	10.	Table charge_benefit_post
+	•	Définit les catégories de dépenses et de revenus, organisées de manière hiérarchique avec des catégories parentes.
+	•	Les postes sont associés aux utilisateurs pour permettre un suivi personnalisé.
+	11.	Table transaction_splits
+	•	Détaille les ventilations de transaction, associant chaque transaction à des postes budgétaires ou des projets spécifiques.
+	•	Chaque ventilation est liée à une transaction et à un poste, permettant une analyse détaillée des dépenses.
+
+Résumé des Contraines Clés
+
+	•	Chaque table avec une relation possède une clé étrangère permettant une suppression en cascade, facilitant ainsi la gestion des dépendances.
+
+Partie 2 : Documentation en Anglais
+
+Introduction
+
+The database structure is designed to fulfill the requirements of a user-centric financial management application. The tables are interconnected through foreign keys, providing logical organization for users, accounts, transactions, and projects. Specific columns enable the management of user-bank relations, contact information, and detailed tracking of transactions and breakdowns. Soft delete functionality is provided through the is_deleted column, enabling data management without permanent deletion.
+
+Database Tables
+
+	1.	Table user
+	•	Stores primary user information such as name, address, and preferences like default currency, theme, and language.
+	•	Provides a folder structure for organizing the user’s data.
+	2.	Table bank
+	•	Stores bank information associated with the user, including contact details.
+	•	Includes a foreign key to the user table, linking each bank to a specific user.
+	3.	Table type_account
+	•	Defines different types of bank accounts, like savings, checking accounts, etc.
+	•	Primarily referenced by the account table to specify each account’s type.
+	4.	Table group_account
+	•	Used to organize accounts into groups, enabling better management and more precise tracking of finances.
+	•	Each group is linked to a specific user via a foreign key to the user table.
+	5.	Table account
+	•	Manages the user’s bank accounts, including name, account number, balance, and contact details.
+	•	Includes foreign keys to the user, bank, type_account, and group_account tables, facilitating account categorization.
+	6.	Table account_documents
+	•	Stores documents related to accounts, such as bank statements or contracts.
+	•	Each document is linked to a specific account via a foreign key to the account table.
+	7.	Table contact
+	•	Holds contact information, such as service providers or financial partners.
+	•	Contacts are linked to a specific user through a foreign key.
+	8.	Table projects
+	•	Manages the user’s financial projects, allowing for budget definition and expense tracking.
+	•	Each project is linked to a user via a foreign key to the user table.
+	9.	Table transactions
+	•	Contains financial transactions made by the user, including date, amount, and payment method.
+	•	Links to both users and contacts for tracking purposes.
+	10.	Table charge_benefit_post
+	•	Defines expense and income categories, organized hierarchically with parent categories.
+	•	Each category is associated with a user for customized tracking.
+	11.	Table transaction_splits
+	•	Details transaction breakdowns, linking each transaction to specific budget categories or projects.
+	•	Each breakdown links to a transaction and category, allowing for detailed expense analysis.
+
+Summary of Key Constraints
+
+	•	Each table with a relationship contains a foreign key allowing for cascading deletions, thus simplifying dependency management.

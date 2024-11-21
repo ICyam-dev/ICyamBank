@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>winAccount</class>
+ <widget class="QDialog" name="winAccount">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>564</width>
+    <height>524</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>Arial</family>
+   </font>
+  </property>
+  <property name="focusPolicy">
+   <enum>Qt::FocusPolicy::TabFocus</enum>
+  </property>
+  <property name="windowTitle">
+   <string>Les Comptes Bancaires</string>
+  </property>
+  <widget class="QLabel" name="labelPicture">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>64</width>
+     <height>64</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="../ressources/ressources.qrc">:/winPictures/account_64.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelTitle">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>10</y>
+     <width>441</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string>Ce formulaire vous pouvez donner les détails de vos comptes bancaires, les comptes bancaires sont rattachés à un établissement bancaire et à un type de comptes. Vous pouvez également le rattaché à un groupe.</string>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt;&quot;&gt;Les Comptes Bancaires&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBoxAccount">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>50</y>
+     <width>471</width>
+     <height>32</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="Line" name="line">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>80</y>
+     <width>541</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Orientation::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushBtnOk">
+   <property name="geometry">
+    <rect>
+     <x>450</x>
+     <y>480</y>
+     <width>100</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Ok</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushBtnCancel">
+   <property name="geometry">
+    <rect>
+     <x>340</x>
+     <y>480</y>
+     <width>100</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Annuler</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushBtnSupp">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>480</y>
+     <width>100</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Supprimer</string>
+   </property>
+  </widget>
+  <widget class="QTabWidget" name="tabWidgetAccount">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>100</y>
+     <width>541</width>
+     <height>371</height>
+    </rect>
+   </property>
+   <property name="currentIndex">
+    <number>0</number>
+   </property>
+   <widget class="QWidget" name="tabEssentialAccount">
+    <attribute name="title">
+     <string>Données Essentielles</string>
+    </attribute>
+    <widget class="QLabel" name="labelAccountDevise">
+     <property name="geometry">
+      <rect>
+       <x>285</x>
+       <y>229</y>
+       <width>207</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Devise :</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="labelDesc">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>101</y>
+       <width>401</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Courte description du compte :</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEditAccountNumber">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>81</y>
+       <width>501</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="labelAccountGroup">
+     <property name="geometry">
+      <rect>
+       <x>21</x>
+       <y>283</y>
+       <width>201</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Groupe :</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="labelAccountType">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>174</y>
+       <width>207</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Type de compte :</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBoxAccountGroup">
+     <property name="geometry">
+      <rect>
+       <x>16</x>
+       <y>300</y>
+       <width>217</width>
+       <height>32</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="labelNumber">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>61</y>
+       <width>401</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Numéro ou référence du compte :</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="labelAccountBank">
+     <property name="geometry">
+      <rect>
+       <x>286</x>
+       <y>173</y>
+       <width>201</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Banque :</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEditBalance">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>250</y>
+       <width>241</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBoxAccountBank">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>190</y>
+       <width>216</width>
+       <height>32</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEditAccountName">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>31</y>
+       <width>501</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBoxAccountDevise">
+     <property name="geometry">
+      <rect>
+       <x>277</x>
+       <y>245</y>
+       <width>251</width>
+       <height>32</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushBtnAddBank">
+     <property name="geometry">
+      <rect>
+       <x>490</x>
+       <y>190</y>
+       <width>33</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="../ressources/ressources.qrc">
+       <normaloff>:/winPictures/add_16.png</normaloff>:/winPictures/add_16.png</iconset>
+     </property>
+     <property name="autoDefault">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="checkBoxIncludeBalanceGroup">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>305</y>
+       <width>241</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Inclure le solde dans le groupe</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="labelName">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>11</y>
+       <width>251</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>13</pointsize>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Nom du compte en banque :</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="labelAccountBalance">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>230</y>
+       <width>207</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Solde du compte :</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushBtnAddGroup">
+     <property name="geometry">
+      <rect>
+       <x>227</x>
+       <y>300</y>
+       <width>33</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="../ressources/ressources.qrc">
+       <normaloff>:/winPictures/add_16.png</normaloff>:/winPictures/add_16.png</iconset>
+     </property>
+     <property name="autoDefault">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="textEditDesc">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>121</y>
+       <width>501</width>
+       <height>41</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBoxAccountType">
+     <property name="geometry">
+      <rect>
+       <x>13</x>
+       <y>190</y>
+       <width>261</width>
+       <height>32</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tabContactAccount">
+    <attribute name="title">
+     <string>Contact</string>
+    </attribute>
+    <widget class="QLineEdit" name="lineEditContactMail">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>130</y>
+       <width>511</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="labelContactName">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>321</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>13</pointsize>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Nom, Prenom du contact :</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEditContactName">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>511</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="labelContactMail">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>110</y>
+       <width>351</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>13</pointsize>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Courriel du contact :</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEditContactPhone">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>80</y>
+       <width>511</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="labelContactPhone">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>60</y>
+       <width>331</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>13</pointsize>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>N° de téléphone du contact :</string>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+ </widget>
+ <tabstops>
+  <tabstop>comboBoxAccount</tabstop>
+  <tabstop>lineEditAccountName</tabstop>
+  <tabstop>lineEditAccountNumber</tabstop>
+  <tabstop>textEditDesc</tabstop>
+  <tabstop>comboBoxAccountType</tabstop>
+  <tabstop>comboBoxAccountBank</tabstop>
+  <tabstop>pushBtnAddBank</tabstop>
+  <tabstop>comboBoxAccountDevise</tabstop>
+  <tabstop>lineEditBalance</tabstop>
+  <tabstop>comboBoxAccountGroup</tabstop>
+  <tabstop>pushBtnAddGroup</tabstop>
+  <tabstop>checkBoxIncludeBalanceGroup</tabstop>
+  <tabstop>lineEditContactName</tabstop>
+  <tabstop>lineEditContactPhone</tabstop>
+  <tabstop>lineEditContactMail</tabstop>
+  <tabstop>pushBtnOk</tabstop>
+  <tabstop>pushBtnCancel</tabstop>
+  <tabstop>pushBtnSupp</tabstop>
+ </tabstops>
+ <resources>
+  <include location="../ressources/ressources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

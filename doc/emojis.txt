@@ -1,0 +1,47 @@
+1. Compte bancaire de dépôt 🏦
+
+	•	🏦 : Banque
+	•	💵 : Billets de banque
+	•	💰 : Sac d’argent
+
+2. Compte épargne 💸
+
+	•	🏦 : Banque
+	•	💸 : Billet avec des ailes (épargne qui prend de la valeur ou se déplace)
+	•	🪙 : Pièces de monnaie
+
+3. Compte de dette 🧾
+
+	•	🧾 : Facture ou reçu
+	•	📉 : Graphique en baisse (représente une dette ou un déficit)
+	•	💳 : Carte de crédit
+
+4. Portefeuille boursier 📈
+
+	•	📈 : Graphique montant
+	•	💹 : Symbole de croissance boursière
+	•	📊 : Diagramme pour visualiser les investissements
+
+5. Biens 🏠
+
+	•	🏠 : Maison ou immobilier
+	•	🚗 : Véhicule
+	•	📦 : Boîte (pour les biens ou stocks en général)
+
+6. Comptes en banque 💳
+
+	•	💳 : Carte bancaire
+	•	🏦 : Banque
+	•	💲 : Signe de dollar (ou autre symbole de monnaie selon le contexte)
+
+7. Banques 🏦
+
+	•	🏦 : Bâtiment de banque
+	•	🪙 : Pièces de monnaie
+	•	🏛️ : Bâtiment institutionnel
+
+8. Groupes de comptes 📁
+
+	•	📁 : Dossier (pour organiser un groupe de comptes)
+	•	🗂️ : Classeur (pour classer plusieurs comptes)
+	•	🏦 : Banque (pour un groupe de comptes bancaires)

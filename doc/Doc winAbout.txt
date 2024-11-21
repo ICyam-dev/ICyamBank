@@ -1,0 +1,59 @@
+Documentation Technique et Fonctionnelle
+
+Partie 1 : Documentation en Français
+
+Introduction
+
+La classe WinAbout est une boîte de dialogue qui affiche des informations sur la version de l’application ICyamBank. Elle est utilisée pour présenter le numéro de version en utilisant les informations de version définies dans le fichier version.h. Cette fenêtre est accessible depuis le menu “À propos” de l’application.
+
+1. Construction de la chaîne de version
+
+	•	Description : La chaîne de version est construite en utilisant les macros définies dans le fichier version.h. Cette approche rend facile la mise à jour de la version de l’application en modifiant simplement les valeurs des macros dans version.h.
+	•	Détails techniques :
+	•	La chaîne est formatée avec la syntaxe Version : <VERSION_STATE><RELEASE_MAJOR>.<RELEASE_MINOR>.<RELEASE_CODE>.<BUILD_NUMBER>.
+	•	Le texte généré est ensuite affiché dans le label labelVersion de l’interface utilisateur.
+
+2. Désactivation du redimensionnement de la fenêtre
+
+	•	Description : La fenêtre est configurée pour être de taille fixe afin d’éviter tout redimensionnement. Cela garantit que le contenu de la fenêtre reste stable et ne se déforme pas si l’utilisateur tente de redimensionner la boîte de dialogue.
+	•	Détails techniques :
+	•	Le drapeau Qt::MSWindowsFixedSizeDialogHint est utilisé pour verrouiller la taille de la fenêtre.
+
+3. Fermeture de la fenêtre avec le bouton “Ok”
+
+	•	Description : Le bouton “Ok” de la fenêtre est connecté à la méthode accept() qui ferme la boîte de dialogue lorsque l’utilisateur clique dessus.
+	•	Détails techniques :
+	•	La connexion est réalisée de manière explicite avec connect(ui->pushButton, &QPushButton::clicked, this, &WinAbout::accept);, ce qui améliore la lisibilité et évite l’utilisation de slots automatiques.
+
+Fonctionnalité de la Classe
+
+Cette classe permet à l’utilisateur d’accéder facilement aux informations de version de l’application, facilitant la vérification de la version en cours d’utilisation. L’interface utilisateur est simple et intuitive, avec un bouton “Ok” pour fermer la boîte de dialogue.
+
+Partie 2 : Documentation en Anglais
+
+Introduction
+
+The WinAbout class is a dialog box displaying version information for the ICyamBank application. It is used to present the version number by utilizing version information defined in the version.h file. This window can be accessed from the application’s “About” menu.
+
+1. Building the Version String
+
+	•	Description : The version string is built using macros defined in the version.h file. This approach makes it easy to update the application’s version by simply modifying the macro values in version.h.
+	•	Technical Details :
+	•	The string is formatted as Version : <VERSION_STATE><RELEASE_MAJOR>.<RELEASE_MINOR>.<RELEASE_CODE>.<BUILD_NUMBER>.
+	•	The generated text is then displayed in the labelVersion label in the user interface.
+
+2. Disabling Window Resizing
+
+	•	Description : The window is set to a fixed size to prevent resizing. This ensures that the content of the window remains stable and does not get distorted if the user tries to resize the dialog box.
+	•	Technical Details :
+	•	The Qt::MSWindowsFixedSizeDialogHint flag is used to lock the window size.
+
+3. Closing the Window with the “Ok” Button
+
+	•	Description : The “Ok” button in the window is connected to the accept() method, which closes the dialog box when the user clicks it.
+	•	Technical Details :
+	•	The connection is explicitly defined with connect(ui->pushButton, &QPushButton::clicked, this, &WinAbout::accept);, improving readability and avoiding the use of automatic slots.
+
+Class Functionality
+
+This class allows users to easily access the application’s version information, making it convenient to check the current version in use. The user interface is simple and intuitive, with an “Ok” button to close the dialog box.

@@ -1,0 +1,89 @@
+Documentation Technique et Fonctionnelle de la Fenêtre winUser
+
+Documentation Technique :
+
+Fonctionnalité principale
+
+La fenêtre winUser est dédiée à la gestion des dossiers utilisateurs dans l’application. Elle permet soit la création d’un nouveau dossier, soit la sélection d’un dossier existant, qui servira ensuite dans les autres opérations de l’application.
+
+Interface Utilisateur
+
+winUser comporte les éléments suivants :
+
+	1.	Champ Nom du dossier : Champ de saisie activé lorsque l’utilisateur crée un nouveau dossier. Ce champ est désactivé lors de l’ouverture d’un dossier existant.
+	2.	Champ Description du dossier : Champ de texte multi-lignes pour saisir une description. Activé pour la création d’un nouveau dossier et désactivé pour un dossier existant.
+	3.	ComboBox Dossiers : Composant listant les dossiers utilisateurs. Si “Nouveau Dossier…” est sélectionné, l’utilisateur entre un nouveau nom. Si un nom de dossier existant est sélectionné, les informations sont chargées et affichées.
+	4.	Boutons Ok et Annuler :
+	•	Ok : Enregistre le dossier sélectionné ou crée un nouveau dossier en base de données.
+	•	Annuler : Ferme la fenêtre sans enregistrement et désactive certaines actions dans MainWindow.
+
+Fonctionnalités spécifiques
+
+	1.	Chargement dynamique des dossiers : Au démarrage, la liste des dossiers disponibles est chargée depuis la base de données.
+	2.	Insertion de nouveaux dossiers : Lors de la création d’un nouveau dossier, celui-ci est inséré dans la table user de la base de données, et l’application récupère l’identifiant du dossier pour l’utiliser dans les opérations ultérieures.
+	3.	Gestion de la barre de statut de MainWindow : Lorsqu’un dossier est ouvert, l’identifiant, le nom du dossier et le chemin de la base de données sont affichés dans la barre de statut.
+	4.	Activation/Désactivation d’actions de MainWindow : winUser contrôle l’activation de certaines actions dans la fenêtre principale en fonction de l’état d’ouverture ou de fermeture de la fenêtre.
+
+Documentation Fonctionnelle :
+
+Objectif fonctionnel
+
+La fenêtre winUser sert à permettre à l’utilisateur de gérer des espaces de travail distincts (appelés “dossiers”), ce qui permet de segmenter les données ou de travailler sur plusieurs projets indépendants au sein de la même application.
+
+Processus utilisateur
+
+	1.	Création d’un nouveau dossier :
+	•	Sélection de “Nouveau Dossier…” dans la liste déroulante.
+	•	Saisie du nom et d’une description facultative.
+	•	Validation en cliquant sur Ok, entraînant l’enregistrement en base de données.
+	2.	Ouverture d’un dossier existant :
+	•	Sélection d’un dossier dans la liste déroulante.
+	•	Affichage des informations du dossier et désactivation des champs de saisie.
+	•	Validation de la sélection par le bouton Ok.
+	3.	Annulation de l’action :
+	•	L’utilisateur peut annuler l’action en cliquant sur Annuler, fermant la fenêtre sans effectuer d’enregistrement.
+
+Technical and Functional Documentation of the winUser Window
+
+Technical Documentation:
+
+Primary Functionality
+
+The winUser window is dedicated to managing user folders within the application. It allows the user to either create a new folder or select an existing one to be used in subsequent operations within the app.
+
+User Interface
+
+winUser includes the following elements:
+
+	1.	Folder Name Field: Enabled input field when the user creates a new folder. It is disabled when opening an existing folder.
+	2.	Folder Description Field: Multi-line text area for entering a description. It is enabled for new folder creation and disabled for existing folders.
+	3.	Folder ComboBox: Lists available user folders. Selecting “New Folder…” allows the user to input a new folder name. Selecting an existing folder name loads and displays its details.
+	4.	Ok and Cancel Buttons:
+	•	Ok: Saves the selected folder or creates a new folder in the database.
+	•	Cancel: Closes the window without saving and disables certain actions in MainWindow.
+
+Specific Functionalities
+
+	1.	Dynamic Folder Loading: On startup, the list of available folders is loaded from the database.
+	2.	New Folder Insertion: When a new folder is created, it is inserted into the user table in the database, and the folder ID is retrieved for future use.
+	3.	Status Bar Management in MainWindow: When a folder is opened, the folder ID, name, and database path are displayed in the status bar.
+	4.	Activation/Deactivation of MainWindow Actions: winUser manages the activation of certain actions in the main window based on whether the user window is open or closed.
+
+Functional Documentation:
+
+Functional Objective
+
+The winUser window enables users to manage distinct workspaces, called “folders,” allowing data segmentation or work on multiple independent projects within the same application.
+
+User Process
+
+	1.	Creating a New Folder:
+	•	Select “New Folder…” from the dropdown list.
+	•	Enter a folder name and an optional description.
+	•	Click Ok to save the new folder to the database.
+	2.	Opening an Existing Folder:
+	•	Select an existing folder from the dropdown list.
+	•	The folder details are displayed, and input fields are disabled.
+	•	Confirm selection by clicking Ok.
+	3.	Cancelling the Action:
+	•	The user can cancel the action by clicking Cancel, which closes the window without saving.

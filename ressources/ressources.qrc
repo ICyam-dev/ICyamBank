@@ -1,0 +1,25 @@
+<RCC>
+    <qresource prefix="/database">
+        <file>_dataBase.db</file>
+    </qresource>
+    <qresource prefix="/winPictures">
+        <file>Icone_ICyamBank-64.png</file>
+        <file>bank_64.png</file>
+        <file>bank_128.png</file>
+        <file>account_128.png</file>
+        <file>add_16.png</file>
+        <file>cross_16.png</file>
+        <file>group_64.png</file>
+        <file>doc_128.png</file>
+        <file>doc_64.png</file>
+        <file>openFolder-64.png</file>
+        <file>user-64.png</file>
+    </qresource>
+    <qresource prefix="/menuIcones">
+        <file>bank_16.png</file>
+        <file>account_16.png</file>
+        <file>group_16.png</file>
+        <file>user-16.png</file>
+        <file>openFolder-16.png</file>
+    </qresource>
+</RCC>

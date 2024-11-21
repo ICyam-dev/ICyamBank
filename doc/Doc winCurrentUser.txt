@@ -1,0 +1,59 @@
+Documentation Technique et Fonctionnelle
+
+Partie 1 : Documentation en Français
+
+Introduction
+
+La classe winCurrentUser représente la fenêtre de gestion des informations utilisateur dans l’application ICyamBank. Cette fenêtre permet aux utilisateurs de visualiser et de modifier leurs informations personnelles telles que le nom, le prénom, le numéro de téléphone, l’adresse email et les adresses postales. L’objectif de cette classe est de fournir une interface intuitive pour l’affichage et la modification des données utilisateur.
+
+Fonctionnalités de la Classe
+
+	1.	Configuration de la Fenêtre
+	•	La fenêtre est configurée pour être de taille fixe et ne peut pas être redimensionnée par l’utilisateur, offrant ainsi une présentation constante.
+	•	Les boutons de contrôle tels que maximiser, minimiser et fermer sont désactivés pour maintenir le flux de travail dans cette fenêtre.
+	2.	Chargement des Données Utilisateur
+	•	La méthode loadCurrentUserData récupère les informations de l’utilisateur actuel (défini par l’ID du dossier en cours) depuis la base de données et remplit les champs de saisie correspondants dans l’interface.
+	•	En cas d’échec de chargement des données, un message d’alerte s’affiche pour en informer l’utilisateur.
+	3.	Mise à Jour des Données Utilisateur
+	•	La méthode updateUserData met à jour les informations utilisateur dans la base de données, en fonction des valeurs saisies par l’utilisateur dans les champs de la fenêtre.
+	•	En cas d’erreur lors de la mise à jour des données, un message d’erreur apparaît, indiquant à l’utilisateur qu’il n’a pas pu enregistrer les modifications.
+	4.	Gestion des Actions “Ok” et “Annuler”
+	•	handleCancelButtonClick ferme la fenêtre sans enregistrer les modifications apportées par l’utilisateur.
+	•	handleOkButtonClick appelle la méthode updateUserData pour enregistrer les modifications dans la base de données avant de fermer la fenêtre.
+
+Résumé des Méthodes Principales
+
+	•	configureWindow : Configure la fenêtre en désactivant les contrôles de redimensionnement.
+	•	loadCurrentUserData : Charge les données utilisateur actuelles depuis la base de données et les affiche dans les champs de saisie.
+	•	updateUserData : Met à jour les informations utilisateur dans la base de données avec les valeurs saisies.
+	•	handleCancelButtonClick : Ferme la fenêtre sans sauvegarder.
+	•	handleOkButtonClick : Enregistre les données et ferme la fenêtre.
+
+Partie 2 : Documentation en Anglais
+
+Introduction
+
+The winCurrentUser class represents the user information management window in the ICyamBank application. This window allows users to view and update their personal information, such as name, first name, phone number, email address, and mailing addresses. The class aims to provide an intuitive interface for displaying and updating user data.
+
+Class Functionalities
+
+	1.	Window Configuration
+	•	The window is configured to have a fixed size and cannot be resized by the user, offering a consistent display.
+	•	Control buttons like maximize, minimize, and close are disabled to keep the workflow within this window.
+	2.	Loading User Data
+	•	The loadCurrentUserData method retrieves the current user’s information (defined by the active folder ID) from the database and populates the respective input fields in the interface.
+	•	If data loading fails, an alert is shown to inform the user.
+	3.	Updating User Data
+	•	The updateUserData method updates the user information in the database based on the values entered by the user in the input fields.
+	•	If there’s an error while updating the data, an error message appears to inform the user that the changes couldn’t be saved.
+	4.	Handling “Ok” and “Cancel” Actions
+	•	handleCancelButtonClick closes the window without saving any changes made by the user.
+	•	handleOkButtonClick calls updateUserData to save changes to the database before closing the window.
+
+Summary of Main Methods
+
+	•	configureWindow: Configures the window by disabling resizing controls.
+	•	loadCurrentUserData: Loads current user data from the database and displays it in the input fields.
+	•	updateUserData: Updates user information in the database with the entered values.
+	•	handleCancelButtonClick: Closes the window without saving.
+	•	handleOkButtonClick: Saves data and closes the window.

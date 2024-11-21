@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>ICyamBank</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <widget class="QWidget" name="widgetLeft" native="true">
+    <property name="geometry">
+     <rect>
+      <x>12</x>
+      <y>12</y>
+      <width>334</width>
+      <height>335</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_3">
+     <item>
+      <widget class="QGroupBox" name="groupBoxAccount">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="font">
+        <font>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="title">
+        <string>Les Comptes Bancaires</string>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QFrame" name="frameFolders">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>4</verstretch>
+           </sizepolicy>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_4">
+           <item>
+            <widget class="QComboBox" name="comboBoxSortAcount">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QTreeWidget" name="treeWidgetAccount">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <attribute name="headerVisible">
+              <bool>false</bool>
+             </attribute>
+             <column>
+              <property name="text">
+               <string notr="true">1</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="frameBalanceFolder">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::Shape::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Shadow::Raised</enum>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout">
+              <item>
+               <widget class="QLabel" name="labelTitleFolder">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                  <horstretch>4</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>Solde total du dossier :</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="labelBalanceFolder">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                  <horstretch>1</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>0.00</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QFrame" name="frameInfoAccount">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>1</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="widgetRight" native="true">
+    <property name="geometry">
+     <rect>
+      <x>356</x>
+      <y>12</y>
+      <width>411</width>
+      <height>361</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QTabWidget" name="tabWidgetDetail">
+       <widget class="QWidget" name="tab">
+        <attribute name="title">
+         <string>Tab 1</string>
+        </attribute>
+       </widget>
+       <widget class="QWidget" name="tab_2">
+        <attribute name="title">
+         <string>Tab 2</string>
+        </attribute>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="mainMenubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>36</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>Ficher</string>
+    </property>
+    <addaction name="actionOpenCreateFolder"/>
+    <addaction name="separator"/>
+    <addaction name="actionBank"/>
+    <addaction name="actionAccount"/>
+    <addaction name="actionGroup"/>
+    <addaction name="separator"/>
+    <addaction name="actionCurrentUser"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Aide</string>
+    </property>
+    <addaction name="actionAbout"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QStatusBar" name="mainStatusbar"/>
+  <action name="actionAbout">
+   <property name="text">
+    <string>A Propos de...</string>
+   </property>
+  </action>
+  <action name="actionBank">
+   <property name="icon">
+    <iconset resource="../ressources/ressources.qrc">
+     <normaloff>:/menuIcones/bank_16.png</normaloff>:/menuIcones/bank_16.png</iconset>
+   </property>
+   <property name="text">
+    <string>Les Banques...</string>
+   </property>
+   <property name="iconText">
+    <string>Les Banques</string>
+   </property>
+  </action>
+  <action name="actionAccount">
+   <property name="icon">
+    <iconset resource="../ressources/ressources.qrc">
+     <normaloff>:/menuIcones/account_16.png</normaloff>:/menuIcones/account_16.png</iconset>
+   </property>
+   <property name="text">
+    <string>Les Comptes bancaires...</string>
+   </property>
+  </action>
+  <action name="actionGroup">
+   <property name="icon">
+    <iconset resource="../ressources/ressources.qrc">
+     <normaloff>:/menuIcones/group_16.png</normaloff>:/menuIcones/group_16.png</iconset>
+   </property>
+   <property name="text">
+    <string>Les Groupes de compte...</string>
+   </property>
+  </action>
+  <action name="actionOpenCreateFolder">
+   <property name="icon">
+    <iconset resource="../ressources/ressources.qrc">
+     <normaloff>:/menuIcones/openFolder-16.png</normaloff>:/menuIcones/openFolder-16.png</iconset>
+   </property>
+   <property name="text">
+    <string>Ouvrir/Créer un dossier...</string>
+   </property>
+  </action>
+  <action name="actionCurrentUser">
+   <property name="icon">
+    <iconset resource="../ressources/ressources.qrc">
+     <normaloff>:/menuIcones/user-16.png</normaloff>:/menuIcones/user-16.png</iconset>
+   </property>
+   <property name="text">
+    <string>Utilisateur...</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="../ressources/ressources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

@@ -1,0 +1,33 @@
+Documentation technique et fonctionnelle du système de gestion de version
+
+FRANÇAIS :
+
+Le système de gestion de version du projet est entièrement centralisé dans le fichier version.h. Ce fichier contient les informations nécessaires à l’identification et à la gestion des différentes versions du projet.
+
+	1.	Structure du système de version :
+	•	Le fichier version.h permet de définir plusieurs aspects clés de la version du projet :
+	•	VERSION_STATE : Ce paramètre indique l’état actuel du projet (d = développement, b = bêta, r = release).
+	•	RELEASE_MAJOR et RELEASE_MINOR : Ces deux macros définissent respectivement la version majeure et mineure du projet. Cela permet de suivre les modifications importantes (majeures) et mineures.
+	•	RELEASE_CODE : Cette valeur représente la date de sortie sous la forme d’un code à 4 chiffres (AAMM), où AA est l’année (sur deux chiffres) et MM le mois de la version.
+	•	BUILD_NUMBER : Ce nombre suit les incréments de chaque build (compilation) et permet de suivre la progression des versions.
+	•	VERSION_STRING : Cette chaîne combine toutes les informations de version pour donner un identifiant de version unique (état + version majeure + version mineure + code de release + numéro de build).
+	2.	Utilité et maintenance :
+	•	Le fichier version.h est essentiel pour suivre les évolutions du projet à travers les différentes étapes de son développement. Il facilite l’identification des différentes phases du cycle de vie, depuis le développement jusqu’à la version finale (release).
+	•	En modifiant simplement les valeurs dans version.h, il est possible de gérer les versions du projet sans avoir à toucher aux autres parties du code.
+	•	Ce système est aussi utilisé pour afficher la version du projet dans l’interface utilisateur (exemple : la fenêtre “À propos” de l’application).
+
+ENGLISH :
+
+The version management system for the project is entirely centralized in the version.h file. This file contains the necessary information to identify and manage the different versions of the project.
+
+	1.	Versioning system structure:
+	•	The version.h file defines several key aspects of the project’s version:
+	•	VERSION_STATE: This parameter indicates the current state of the project (d = development, b = beta, r = release).
+	•	RELEASE_MAJOR and RELEASE_MINOR: These two macros respectively define the major and minor versions of the project. This allows tracking of significant (major) and smaller (minor) changes.
+	•	RELEASE_CODE: This value represents the release date in the form of a 4-digit code (YYMM), where YY is the year (two digits) and MM is the month of the version.
+	•	BUILD_NUMBER: This number increments with each build (compilation) and helps track the version progression.
+	•	VERSION_STRING: This string combines all version information to give a unique version identifier (state + major version + minor version + release code + build number).
+	2.	Utility and maintenance:
+	•	The version.h file is essential for tracking the project’s evolution through its various development stages. It helps identify the different phases of the project’s lifecycle, from development to the final release version.
+	•	By simply modifying values in version.h, it is possible to manage the project’s versions without affecting other parts of the code.
+	•	This system is also used to display the project’s version in the user interface (example: the “About” window of the application).

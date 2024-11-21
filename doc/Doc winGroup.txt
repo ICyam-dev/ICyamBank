@@ -1,0 +1,61 @@
+DDocumentation Technique et Fonctionnelle
+
+Partie 1 : Documentation en Français
+
+Introduction
+
+La classe winGroup permet de gérer les groupes de comptes dans l’application ICyamBank. Elle offre une interface pour créer, modifier, et supprimer des groupes de comptes associés à un utilisateur spécifique. Cette classe utilise la base de données pour enregistrer et récupérer les informations des groupes et effectue une gestion des erreurs SQL pour garantir une manipulation fiable des données.
+
+Fonctionnalités de la Classe
+
+	1.	Mode Création et Modification
+	•	La fenêtre winGroup peut être initialisée en mode création forcée grâce à un paramètre booléen passé au constructeur. Dans ce mode, la comboBox est verrouillée sur “Nouveau Groupe” pour guider l’utilisateur vers la création d’un groupe.
+	•	La méthode toggleEditMode permet de basculer entre les modes création et modification. En mode création, le bouton de suppression est masqué, tandis qu’en mode modification, il est visible.
+	2.	Chargement des Groupes
+	•	La méthode loadGroupNames charge tous les groupes existants de l’utilisateur courant dans la comboBox. Elle ajoute une option “Nouveau Groupe” pour permettre de créer un nouveau groupe.
+	•	Si une erreur survient lors de la récupération des groupes depuis la base de données, un message d’erreur est affiché.
+	3.	Opérations sur les Groupes
+	•	Création et Modification : La méthode handleGroupOperation gère à la fois la création d’un nouveau groupe et la modification d’un groupe existant. Si “Nouveau Groupe” est sélectionné dans la comboBox, un groupe est inséré dans la base de données. Sinon, les informations du groupe sélectionné sont mises à jour.
+	•	Suppression : La méthode handleGroupDeletion supprime un groupe de la base de données et désassocie les comptes liés en mettant id_group à NULL.
+	4.	Prévention de la Fermeture de la Fenêtre
+	•	La méthode closeEvent ignore l’événement de fermeture pour empêcher l’utilisateur de fermer la fenêtre directement. Cela est utile pour forcer l’utilisateur à utiliser les boutons d’interface pour terminer ou annuler une opération.
+
+Résumé des Méthodes Principales
+
+	•	setNewGroupMode : Force le mode de création pour les nouveaux groupes.
+	•	loadGroupNames : Charge la liste des groupes dans la comboBox en fonction de l’utilisateur courant.
+	•	onComboBoxSelectionChanged : Gère la sélection de la comboBox pour passer en mode création ou modification.
+	•	handleGroupOperation : Gère la création et la modification des groupes.
+	•	handleGroupDeletion : Supprime un groupe et dissocie les comptes associés.
+	•	closeEvent : Empêche la fermeture directe de la fenêtre.
+	•	toggleEditMode : Bascule entre les modes création et modification.
+
+Partie 2 : Documentation en Anglais
+
+Introduction
+
+The winGroup class manages account groups in the ICyamBank application. It provides an interface for creating, modifying, and deleting account groups linked to a specific user. This class interacts with the database to store and retrieve group information and handles SQL errors to ensure reliable data manipulation.
+
+Class Functionalities
+
+	1.	Creation and Edit Modes
+	•	The winGroup window can be initialized in forced creation mode via a boolean parameter passed to the constructor. In this mode, the comboBox is locked on “New Group” to guide the user towards creating a group.
+	•	The toggleEditMode method allows switching between creation and edit modes. In creation mode, the delete button is hidden, whereas in edit mode, it becomes visible.
+	2.	Loading Groups
+	•	The loadGroupNames method loads all existing groups for the current user into the comboBox. It adds a “New Group” option to facilitate creating a new group.
+	•	If an error occurs while fetching groups from the database, an error message is displayed.
+	3.	Group Operations
+	•	Creation and Modification: The handleGroupOperation method handles both creating a new group and modifying an existing one. If “New Group” is selected in the comboBox, a group is inserted into the database. Otherwise, the selected group’s information is updated.
+	•	Deletion: The handleGroupDeletion method deletes a group from the database and unlinks associated accounts by setting id_group to NULL.
+	4.	Window Close Prevention
+	•	The closeEvent method ignores the close event to prevent the user from closing the window directly. This is useful to force the user to use interface buttons to complete or cancel an operation.
+
+Summary of Main Methods
+
+	•	setNewGroupMode: Forces creation mode for new groups.
+	•	loadGroupNames: Loads the list of groups into the comboBox based on the current user.
+	•	onComboBoxSelectionChanged: Manages comboBox selection to switch between creation and edit modes.
+	•	handleGroupOperation: Manages the creation and modification of groups.
+	•	handleGroupDeletion: Deletes a group and unlinks associated accounts.
+	•	closeEvent: Prevents direct window closing.
+	•	toggleEditMode: Switches between creation and edit modes.

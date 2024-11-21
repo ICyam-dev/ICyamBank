@@ -1,0 +1,75 @@
+Documentation technique et fonctionnelle de winAccount
+
+FRANÇAIS :
+
+Documentation Technique et Fonctionnelle
+
+Partie 1 : Documentation en Français
+
+Introduction
+
+La classe winAccount représente la fenêtre de gestion des comptes bancaires dans l’application ICyamBank. Elle permet de créer, modifier et supprimer des comptes bancaires associés à l’utilisateur. Cette fenêtre inclut également des options pour ajouter de nouvelles banques et de nouveaux groupes de comptes, avec des fonctionnalités de mise à jour automatique des listes déroulantes correspondantes.
+
+Fonctionnalités de la Classe
+
+	1.	Gestion de la Fenêtre
+	•	La fenêtre est configurée pour être de taille fixe, empêchant le redimensionnement afin de garantir une présentation stable des informations.
+	•	Le bouton “Supprimer” est masqué par défaut et n’est visible que lorsque l’utilisateur passe en mode “Modification”.
+	2.	Chargement des Données
+	•	Les méthodes de chargement remplissent les différentes ComboBox (liste déroulante) de la fenêtre avec les comptes, banques, types de comptes, devises et groupes disponibles dans la base de données.
+	•	Chaque ComboBox est remplie en exécutant des requêtes SQL qui sélectionnent uniquement les éléments actifs et non supprimés.
+	3.	Création et Modification de Compte
+	•	Lors de la création, la méthode handleOkButtonClick() insère un nouveau compte avec les informations fournies.
+	•	Lors de la modification, cette même méthode met à jour les informations du compte sélectionné.
+	•	Les informations incluent des détails tels que le numéro de compte, le nom du compte, la banque associée, le type de compte, le solde, les contacts, et plus encore.
+	4.	Suppression d’un Compte
+	•	La suppression est réalisée via une “suppression douce” (soft delete), où le champ is_deleted du compte est mis à jour. Cela empêche l’affichage du compte dans les futures recherches sans le supprimer physiquement de la base de données.
+	•	Les transactions et ventilations associées au compte sont également marquées comme supprimées pour garantir une suppression en cascade des données.
+	5.	Ajout de Banques et Groupes
+	•	Les boutons d’ajout de banque et de groupe permettent d’ouvrir les fenêtres winBank et winGroup en mode “création”.
+	•	Après la création d’une nouvelle banque ou d’un nouveau groupe, les ComboBox correspondantes sont automatiquement mises à jour et sélectionnent la nouvelle entrée.
+	6.	Modes Création et Modification
+	•	La méthode setWindowMode(bool isCreation) permet de basculer entre le mode création et le mode modification. En mode création, tous les champs sont vides et prêts pour l’entrée de nouvelles informations. En mode modification, les champs sont remplis avec les informations du compte sélectionné.
+
+Résumé des Méthodes Principales
+
+	•	setWindowMode : Configure le mode de la fenêtre entre création et modification.
+	•	handleOkButtonClick : Gère l’insertion ou la mise à jour d’un compte selon le mode.
+	•	handleDeleteButtonClick : Supprime un compte (soft delete) ainsi que les transactions associées.
+	•	handleAddBankButtonClick et handleAddGroupButtonClick : Ouvrent les fenêtres de création de banques et groupes, puis mettent à jour les ComboBox après la création.
+	•	loadComboBoxAccount, loadComboBoxAccountBank, loadComboBoxAccountDevise, loadComboBoxAccountType, loadComboBoxAccountGroup : Chargent les données dans les différentes ComboBox.
+
+Partie 2 : Documentation en Anglais
+
+Introduction
+
+The winAccount class represents the account management window in the ICyamBank application. It allows users to create, modify, and delete bank accounts associated with the user. This window also provides options to add new banks and account groups, with automatic updates to the corresponding dropdown lists.
+
+Class Functionalities
+
+	1.	Window Management
+	•	The window is set to a fixed size, preventing resizing to ensure a stable presentation of information.
+	•	The “Delete” button is hidden by default and only becomes visible when the user enters “Edit” mode.
+	2.	Data Loading
+	•	The loading methods populate the various ComboBoxes in the window with available accounts, banks, account types, currencies, and groups from the database.
+	•	Each ComboBox is populated by executing SQL queries that select only active and non-deleted items.
+	3.	Account Creation and Modification
+	•	In creation mode, the handleOkButtonClick() method inserts a new account with the provided information.
+	•	In edit mode, this same method updates the information of the selected account.
+	•	Information includes details such as account number, account name, associated bank, account type, balance, contacts, and more.
+	4.	Account Deletion
+	•	Deletion is performed through a “soft delete” approach, where the account’s is_deleted field is updated. This prevents the account from showing up in future searches without physically deleting it from the database.
+	•	Associated transactions and splits are also marked as deleted to ensure cascading data deletion.
+	5.	Adding Banks and Groups
+	•	The add bank and group buttons open the winBank and winGroup windows in creation mode.
+	•	After creating a new bank or group, the corresponding ComboBox is automatically updated and selects the new entry.
+	6.	Creation and Edit Modes
+	•	The setWindowMode(bool isCreation) method allows switching between creation and edit modes. In creation mode, all fields are cleared and ready for new information. In edit mode, fields are populated with the selected account’s information.
+
+Summary of Main Methods
+
+	•	setWindowMode: Configures the window mode between creation and edit.
+	•	handleOkButtonClick: Handles account insertion or update depending on the mode.
+	•	handleDeleteButtonClick: Soft deletes an account and its associated transactions.
+	•	handleAddBankButtonClick and handleAddGroupButtonClick: Open bank and group creation windows, then update the ComboBox after creation.
+	•	loadComboBoxAccount, loadComboBoxAccountBank, loadComboBoxAccountDevise, loadComboBoxAccountType, loadComboBoxAccountGroup: Load data into the respective ComboBoxes.
