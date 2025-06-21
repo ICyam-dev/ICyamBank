@@ -79,7 +79,9 @@ void winBank::onComboBoxSelectionChanged(int index)
         toggleEditMode(true);  // Passer en mode création / Switch to creation mode
     } else {
         int bankId = ui->comboBoxBank->currentData().toInt();
-        QSqlQuery query(QSqlDatabase::database("ICyamBankConnection"));
+        // Utiliser la connexion de base de données principale
+        // Use the main database connection
+        QSqlQuery query(QSqlDatabase::database("ICyamConnection"));
         query.prepare("SELECT * FROM bank WHERE id_bank = :id");
         query.bindValue(":id", bankId);
 
@@ -114,7 +116,9 @@ void winBank::toggleEditMode(bool isNew)
 // Gérer la création ou la modification d'une banque / Handle bank creation or modification
 void winBank::handleBankOperation()
 {
-    QSqlQuery query(QSqlDatabase::database("ICyamBankConnection"));
+    // Utiliser la connexion définie dans objICyamApp
+    // Use the connection defined in objICyamApp
+    QSqlQuery query(QSqlDatabase::database("ICyamConnection"));
 
     // Mode création : insérer une nouvelle banque / Creation mode: insert a new bank
     if (ui->comboBoxBank->currentIndex() == 0) {
@@ -151,7 +155,9 @@ void winBank::handleBankOperation()
 void winBank::handleBankDeletion()
 {
     int bankId = ui->comboBoxBank->currentData().toInt();
-    QSqlQuery query(QSqlDatabase::database("ICyamBankConnection"));
+    // Utiliser la connexion standard de l'application
+    // Use the application's standard connection
+    QSqlQuery query(QSqlDatabase::database("ICyamConnection"));
     query.prepare("UPDATE bank SET is_deleted = 1 WHERE id_bank = :id");
     query.bindValue(":id", bankId);
 
